@@ -36,7 +36,9 @@ public class MainWindow extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        btnGestionUsager = new javax.swing.JButton();
+        btnAjouterOeuvre = new javax.swing.JButton();
+        btnAjouterExemplaire = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,7 +82,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestion réservations"));
@@ -130,17 +132,26 @@ public class MainWindow extends javax.swing.JFrame {
         jButton5.setRequestFocusEnabled(false);
         jButton5.setRolloverEnabled(false);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Usagers"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Autre"));
 
-        jButton6.setText("Gestion usagers");
-        jButton6.setFocusable(false);
-        jButton6.setRequestFocusEnabled(false);
-        jButton6.setRolloverEnabled(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnGestionUsager.setText("Gestion usagers");
+        btnGestionUsager.setFocusable(false);
+        btnGestionUsager.setRequestFocusEnabled(false);
+        btnGestionUsager.setRolloverEnabled(false);
+        btnGestionUsager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnGestionUsagerActionPerformed(evt);
             }
         });
+
+        btnAjouterOeuvre.setText("Ajouter une oeuvre");
+        btnAjouterOeuvre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAjouterOeuvreActionPerformed(evt);
+            }
+        });
+
+        btnAjouterExemplaire.setText("Ajouter des exemplaires d'oeuvres");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -148,15 +159,24 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGestionUsager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAjouterOeuvre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnAjouterExemplaire)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jButton6)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(btnGestionUsager)
+                .addGap(18, 18, 18)
+                .addComponent(btnAjouterOeuvre)
+                .addGap(18, 18, 18)
+                .addComponent(btnAjouterExemplaire)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         setJMenuBar(jMenuBar1);
@@ -183,14 +203,16 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
         );
+
+        jPanel3.getAccessibleContext().setAccessibleName("Autre");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,12 +245,19 @@ public class MainWindow extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnGestionUsagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionUsagerActionPerformed
         GestionUsagers gu = new GestionUsagers();
         gu.setVisible(true);
         gu.setLocationRelativeTo(null);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnGestionUsagerActionPerformed
+
+    private void btnAjouterOeuvreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterOeuvreActionPerformed
+        AjouterOeuvre ao = new AjouterOeuvre();
+        ao.setVisible(true);
+        ao.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAjouterOeuvreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,12 +297,14 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAjouterExemplaire;
+    private javax.swing.JButton btnAjouterOeuvre;
+    private javax.swing.JButton btnGestionUsager;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

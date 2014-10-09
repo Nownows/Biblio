@@ -1,22 +1,39 @@
 package modele;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Usager {
-    
+
     private int id;
     private String nom;
     private String prenom;
-    private static List<Oeuvre> listUsagers =  new ArrayList<Oeuvre>() ;
+    public static Set<Usager> listUsagers = new HashSet<>();
 
-    public Usager(int id, String nom, String prenom) {
-        this.id = id;
+    public Usager(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
+        this.id = listUsagers.size();
+        // on ajoute l'usager à la liste
+        listUsagers.add(this);
     }
-    
-    public static Usager e_idf(String nom){
+
+    public static Usager e_idf(String nom, String prenom) {
+        for (Usager u : listUsagers) {
+            // si on trouve le nom de famille
+            if (u.getNom().equals(nom)) {
+                // s'il n'y a pas de prenom
+                if (prenom.equals("")) {
+                    return u;
+                } else {
+                    // si noml et prenom correspondent
+                    if (u.getPrenom().equals(prenom)) {
+                        return u;
+                    }
+                }
+            }
+        }
+        // non trouvé
         return null;
     }
 
@@ -43,7 +60,5 @@ public class Usager {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    
-    
-    
+
 }

@@ -5,16 +5,24 @@
  */
 package vue;
 
+import controller.Gestion;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ListModel;
+import modele.Usager;
+
 /**
  *
  * @author ASUS
  */
 public class GestionUsagers extends javax.swing.JFrame {
 
+    Gestion gestion;
     /**
      * Creates new form GestionUsagers
      */
     public GestionUsagers() {
+        gestion = new Gestion();
         initComponents();
     }
 
@@ -32,15 +40,22 @@ public class GestionUsagers extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        txtRechercherNom = new javax.swing.JTextField();
+        txtRechercherPrenom = new javax.swing.JTextField();
+        btnRechercher = new javax.swing.JButton();
+        bntRetour = new javax.swing.JButton();
+        btnSupprimer = new javax.swing.JButton();
+        btnModifier = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtAjouterUtilisateurNom = new javax.swing.JTextField();
+        txtAjouterUtilisateurPrenom = new javax.swing.JTextField();
+        bntAjouterUtilisateur = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        lblNomTrouve = new javax.swing.JLabel();
+        lblPrenomTrouve = new javax.swing.JLabel();
+        lblDateTrouve = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -57,19 +72,24 @@ public class GestionUsagers extends javax.swing.JFrame {
 
         jLabel2.setText("Prenom :");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtRechercherNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtRechercherNomActionPerformed(evt);
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtRechercherPrenom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtRechercherPrenomActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Rechercher");
+        btnRechercher.setText("Rechercher");
+        btnRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRechercherActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,15 +100,15 @@ public class GestionUsagers extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnRechercher))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2))))
+                            .addComponent(txtRechercherNom)
+                            .addComponent(txtRechercherPrenom))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -97,48 +117,118 @@ public class GestionUsagers extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRechercherNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRechercherPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnRechercher)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextField1.getAccessibleContext().setAccessibleName("jTextNom");
+        txtRechercherNom.getAccessibleContext().setAccessibleName("jTextNom");
 
-        jButton2.setText("Retour");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bntRetour.setText("Retour");
+        bntRetour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bntRetourActionPerformed(evt);
             }
         });
 
-        jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder("Utilisateurs trouvés"));
-        jScrollPane3.setToolTipText("");
+        btnSupprimer.setText("Supprimer");
+        btnSupprimer.setEnabled(false);
+        btnSupprimer.setFocusable(false);
+        btnSupprimer.setRequestFocusEnabled(false);
+        btnSupprimer.setRolloverEnabled(false);
 
-        jList3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane3.setViewportView(jList3);
+        btnModifier.setText("Modifier");
+        btnModifier.setEnabled(false);
+        btnModifier.setFocusable(false);
+        btnModifier.setRequestFocusEnabled(false);
+        btnModifier.setRolloverEnabled(false);
 
-        jButton3.setText("Supprimer");
-        jButton3.setEnabled(false);
-        jButton3.setFocusable(false);
-        jButton3.setRequestFocusEnabled(false);
-        jButton3.setRolloverEnabled(false);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajouter un utilisateur"));
+        jPanel2.setToolTipText("");
 
-        jButton4.setText("Modifier");
-        jButton4.setEnabled(false);
-        jButton4.setFocusable(false);
-        jButton4.setRequestFocusEnabled(false);
-        jButton4.setRolloverEnabled(false);
+        jLabel3.setText("Nom :");
 
-        jButton5.setText("Voir");
-        jButton5.setEnabled(false);
-        jButton5.setFocusable(false);
-        jButton5.setRequestFocusEnabled(false);
-        jButton5.setRolloverEnabled(false);
+        jLabel4.setText("Prenom :");
+
+        bntAjouterUtilisateur.setText("Ajouter");
+        bntAjouterUtilisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAjouterUtilisateurActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAjouterUtilisateurNom)
+                            .addComponent(txtAjouterUtilisateurPrenom)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bntAjouterUtilisateur)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtAjouterUtilisateurNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtAjouterUtilisateurPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bntAjouterUtilisateur)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Utilisateur trouvé"));
+
+        lblNomTrouve.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        lblPrenomTrouve.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblNomTrouve)
+                        .addGap(122, 122, 122)
+                        .addComponent(lblPrenomTrouve))
+                    .addComponent(lblDateTrouve))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNomTrouve)
+                    .addComponent(lblPrenomTrouve))
+                .addGap(18, 18, 18)
+                .addComponent(lblDateTrouve)
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,18 +237,17 @@ public class GestionUsagers extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(bntRetour))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(btnSupprimer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnModifier)
+                        .addGap(0, 328, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -166,35 +255,52 @@ public class GestionUsagers extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                    .addComponent(btnSupprimer)
+                    .addComponent(btnModifier))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bntRetour)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtRechercherNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRechercherNomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtRechercherNomActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtRechercherPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRechercherPrenomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtRechercherPrenomActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void bntRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRetourActionPerformed
         MainWindow mw = new MainWindow();
         mw.setVisible(true);
         mw.setLocationRelativeTo(null);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bntRetourActionPerformed
+
+    private void bntAjouterUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAjouterUtilisateurActionPerformed
+        gestion.ajouterUtilisateur(txtAjouterUtilisateurNom.getText(), txtAjouterUtilisateurPrenom.getText());
+        txtAjouterUtilisateurNom.setText(null);
+        txtAjouterUtilisateurPrenom.setText(null);
+    }//GEN-LAST:event_bntAjouterUtilisateurActionPerformed
+
+    private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
+        Usager u = gestion.rechercherUsager(txtRechercherNom.getText(), txtRechercherPrenom.getText());
+        if (u != null) {
+           lblNomTrouve.setText(u.getNom());
+           lblPrenomTrouve.setText(u.getPrenom()); 
+           btnModifier.setEnabled(true);
+           btnSupprimer.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnRechercherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,19 +338,26 @@ public class GestionUsagers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton bntAjouterUtilisateur;
+    private javax.swing.JButton bntRetour;
+    private javax.swing.JButton btnModifier;
+    private javax.swing.JButton btnRechercher;
+    private javax.swing.JButton btnSupprimer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList jList1;
-    private javax.swing.JList jList3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblDateTrouve;
+    private javax.swing.JLabel lblNomTrouve;
+    private javax.swing.JLabel lblPrenomTrouve;
+    private javax.swing.JTextField txtAjouterUtilisateurNom;
+    private javax.swing.JTextField txtAjouterUtilisateurPrenom;
+    private javax.swing.JTextField txtRechercherNom;
+    private javax.swing.JTextField txtRechercherPrenom;
     // End of variables declaration//GEN-END:variables
 }

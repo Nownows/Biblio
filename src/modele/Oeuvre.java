@@ -7,11 +7,14 @@ public class Oeuvre {
     
     private int id;
     private String nom;
-    private static List<Oeuvre> listOeuvre =  new ArrayList<Oeuvre>() ;
+    private String auteur;
+    public static List<Oeuvre> listOeuvre =  new ArrayList<>() ;
 
-    public Oeuvre(int id, String nom) {
-        this.id = id;
+    public Oeuvre(String nom, String auteur) {
+        this.id = listOeuvre.size();
         this.nom = nom;
+        this.auteur = auteur;
+        listOeuvre.add(this);
     }
     
     public static Oeuvre e_idf(String nom){
@@ -24,6 +27,14 @@ public class Oeuvre {
 
     public String getNom() {
         return nom;
+    }
+    
+    public String getAuteur() {
+        return auteur;
+    }
+    
+    public void setAuteur(String auteur) {
+        this.auteur = auteur;
     }
 
     public void setId(int id) {
