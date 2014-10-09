@@ -18,6 +18,11 @@ public class Oeuvre {
     }
     
     public static Oeuvre e_idf(String nom){
+        for(Oeuvre o : listOeuvre) {
+            if (o.getNom().equals(nom)) {
+                return o;
+            }
+        }
         return null;
     }
 

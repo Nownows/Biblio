@@ -5,9 +5,14 @@
  */
 package vue;
 
+import controller.Gestion;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import modele.Oeuvre;
+import modele.Reservation;
 import modele.Usager;
 
 /**
@@ -19,13 +24,15 @@ public class ReservationOeuvre extends javax.swing.JFrame {
     /**
      * Creates new form ReservationOeuvre
      */
+    Gestion gestion;
+
     public ReservationOeuvre() {
+        gestion = new Gestion();
         initComponents();
         Vector comboBoxItems = new Vector();
         if (Oeuvre.listOeuvre.isEmpty()) {
             comboBoxItems.add("Aucune oeuvre");
-        }
-        else {
+        } else {
             Oeuvre.listOeuvre.stream().forEach((o) -> {
                 comboBoxItems.add(o.getNom());
             });
@@ -33,13 +40,12 @@ public class ReservationOeuvre extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
         cmbOeuvres.setModel(model);
 
-         Vector comboBoxItemsUsager = new Vector();
+        Vector comboBoxItemsUsager = new Vector();
         if (Usager.listUsagers.isEmpty()) {
             comboBoxItemsUsager.add("Aucun usager");
-        }
-        else {
+        } else {
             Usager.listUsagers.stream().forEach((u) -> {
-                comboBoxItemsUsager.add(u.getNom());
+                comboBoxItemsUsager.add(u.getNom() + ' ' + u.getPrenom());
             });
         }
         model = new DefaultComboBoxModel(comboBoxItemsUsager);
@@ -59,6 +65,9 @@ public class ReservationOeuvre extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
+        jDialog3 = new javax.swing.JDialog();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,12 +83,46 @@ public class ReservationOeuvre extends javax.swing.JFrame {
         txtNomOeuvre = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         txtDate = new javax.swing.JTextField();
+        btnGoResa = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
+        jDialog3.getContentPane().setLayout(jDialog3Layout);
+        jDialog3Layout.setHorizontalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog3Layout.setVerticalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,6 +234,13 @@ public class ReservationOeuvre extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnGoResa.setText("Valider");
+        btnGoResa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoResaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,12 +248,15 @@ public class ReservationOeuvre extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGoResa))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -213,9 +266,15 @@ public class ReservationOeuvre extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGoResa)
+                        .addGap(18, 18, 18)))
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -230,45 +289,54 @@ public class ReservationOeuvre extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReservationOeuvre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReservationOeuvre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReservationOeuvre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReservationOeuvre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnGoResaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoResaActionPerformed
+        String oeuvre = "";
+        String erreurs = "";
+        if (txtNomOeuvre.getText().equals("")) {
+            oeuvre = cmbOeuvres.getSelectedItem().toString();
+        } else {
+            oeuvre = txtNomOeuvre.getText();
         }
-        //</editor-fold>
+        Oeuvre o = Oeuvre.e_idf(oeuvre);
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReservationOeuvre().setVisible(true);
+        Usager u;
+        if (txtNom.getText().equals("") && txtPrenom.getText().equals("")) {
+            String utilisateur = cmbUsager.getSelectedItem().toString();
+            String[] util = utilisateur.split(" ");
+            u = Usager.e_idf(util[0], util[1]);
+
+        } else {
+            u = Usager.e_idf(txtNom.getText(), txtPrenom.getText());
+        }
+
+        if (u != null || o != null) {
+            Reservation res = new Reservation(u, o, txtDate.getText());
+            MainWindow mw = new MainWindow();
+            mw.setVisible(true);
+            mw.setLocationRelativeTo(null);
+            this.setVisible(false);
+        } else {
+            if (o == null) {
+                erreurs += "Oeuvre non trouvée\n";
             }
-        });
-    }
+            if (u == null) {
+                erreurs += "Utilisateur non trouvé\n";
+            }
+            JOptionPane.showMessageDialog(null, erreurs, "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnGoResaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGoResa;
     private javax.swing.JComboBox cmbOeuvres;
     private javax.swing.JComboBox cmbUsager;
     private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JDialog jDialog3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

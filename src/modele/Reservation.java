@@ -1,23 +1,33 @@
 package modele;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Reservation {
 
-    private Date dateResa;
+    private int id;
+    private String dateResa;
     private Usager u;
-    private Exemplaire e;
+    private Oeuvre o;
+    private static List<Reservation> listReservations =  new ArrayList<>() ;
 
-    public Reservation(Date dateResa) {
+    public Reservation(Usager u, Oeuvre o,String dateResa) {
+        this.o = o;
+        this.u = u;
         this.dateResa = dateResa;
+        this.id = listReservations.size();
+        listReservations.add(this);
+    }
+    
+    public static List<Reservation> getAllReservations() {
+        return listReservations;
     }
 
-    public Reservation creerResa(Usager u, Oeuvre o) {
-        return null;
-    }
-
-    public void supprimerResa(Oeuvre o, Usager u, Date d) {
-
+    public void supprimerResa(Oeuvre o, Usager u, String d) {
+        listReservations.stream().filter((r) -> (r.getUsager().equals(u) && r.getOeuvre().equals(o) && r.getDateResa().equals(d))).forEach((r) -> {
+            listReservations.remove(r);
+        });
     }
 
     public Usager getUsager() {
@@ -28,19 +38,19 @@ public class Reservation {
         this.u = u;
     }
 
-    public Exemplaire getExemplaire() {
-        return e;
+    public Oeuvre getOeuvre() {
+        return o;
     }
 
-    public void setExemplaire(Exemplaire e) {
-        this.e = e;
+    public void setOeuvre(Oeuvre e) {
+        this.o = o;
     }
 
-    public Date getDateResa() {
+    public String getDateResa() {
         return dateResa;
     }
 
-    public void setDateResa(Date dateResa) {
+    public void setDateResa(String dateResa) {
         this.dateResa = dateResa;
     }
 
