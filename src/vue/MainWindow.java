@@ -48,7 +48,7 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion d'une bibliothèque");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Retrait/retour"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Retrait/retour des exemplaires"));
 
         jButton2.setText("Retourner un exemplaire");
         jButton2.setFocusable(false);
@@ -145,6 +145,11 @@ public class MainWindow extends javax.swing.JFrame {
         jButton5.setFocusable(false);
         jButton5.setRequestFocusEnabled(false);
         jButton5.setRolloverEnabled(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Autre"));
 
@@ -277,6 +282,10 @@ public class MainWindow extends javax.swing.JFrame {
         ar.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_btnAfficherResaActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
