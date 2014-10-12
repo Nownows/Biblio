@@ -1,6 +1,6 @@
 package modele;
 
-class Exemplaire {
+public class Exemplaire {
     
     private int id;
     private String editeur;
@@ -15,14 +15,7 @@ class Exemplaire {
         this.etat = etat;
         this.disponible = disponible;
     }
-    
-    public Exemplaire trouverExemplaire(){
-        return null;
-    }
-    
-    public void rendrerExemplaire(Exemplaire e, String etat, Boolean dispo){
-        
-    }
+
 
     public int getId() {
         return id;

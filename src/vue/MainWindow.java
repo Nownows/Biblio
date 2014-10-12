@@ -6,6 +6,13 @@
 
 package vue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ASUS
@@ -16,7 +23,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form Ihm
      */
     public MainWindow() {
-        initComponents();
+        initComponents();      
     }
 
     /**
@@ -179,6 +186,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         btnAjouterExemplaire.setText("Ajouter des exemplaires d'oeuvres");
+        btnAjouterExemplaire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAjouterExemplaireActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -294,6 +306,13 @@ public class MainWindow extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnAjouterExemplaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterExemplaireActionPerformed
+        AjouterExemplaire ae = new AjouterExemplaire();
+        ae.setVisible(true);
+        ae.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAjouterExemplaireActionPerformed
 
     /**
      * @param args the command line arguments

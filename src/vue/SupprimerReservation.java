@@ -6,8 +6,15 @@
 
 package vue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -200,7 +207,13 @@ public class SupprimerReservation extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSupprimerManuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprimerManuActionPerformed
-        IHM.supprimerReservation(txtNomUsager.getText(), txtPrenomUsager.getText(), txtNomOeuvre.getText(), txtDate.getText());
+        try {
+        Date date = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE).parse(txtDate.getText());
+            IHM.supprimerReservation(txtNomUsager.getText(), txtPrenomUsager.getText(), txtNomOeuvre.getText(), date);
+        } catch (ParseException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnSupprimerManuActionPerformed
 
 

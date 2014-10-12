@@ -9,6 +9,7 @@ public class Oeuvre {
     private String nom;
     private String auteur;
     private static List<Oeuvre> listOeuvre =  new ArrayList<>() ;
+    private List<Exemplaire> listExemplaires = new ArrayList<>();
 
     public Oeuvre(String nom, String auteur) {
         this.id = listOeuvre.size();
@@ -24,6 +25,18 @@ public class Oeuvre {
             }
         }
         return null;
+    }
+    
+    public Exemplaire trouverExemplaire(){
+        if (listExemplaires.isEmpty()) {
+            return null;
+        }
+        return null;
+        
+    }
+    
+    public void rendrerExemplaire(Exemplaire e, String etat, Boolean dispo){
+        
     }
     
     public static List<Oeuvre> getAllOeuvres() {
@@ -52,6 +65,10 @@ public class Oeuvre {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    
+    public void ajouterExemplaire(Exemplaire e){
+        this.listExemplaires.add(e);
     }
     
     

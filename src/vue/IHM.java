@@ -1,6 +1,7 @@
 package vue;
 
 import controller.Gestion;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import modele.Oeuvre;
@@ -30,11 +31,14 @@ public class IHM {
         return gestion.rechercherUsager(nom, prenom);
     }
 
-    public static int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, String date) {
+    public static int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
         return gestion.reserverOeuvre(nomUsager, prenomUsager, nomOeuvre, date );
     }
-    public static void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, String date){
+    public static void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date){
         gestion.supprimerReservation(nomUsager, prenomUsager,nomOeuvre, date);
+    }
+    public static void ajouterExemplaire(String nomOeuvre,int id, String editeur, String Type, String etat, Boolean disponible){
+        gestion.ajouterExemplaire(nomOeuvre, id, editeur, Type, etat, disponible);
     }
     
     

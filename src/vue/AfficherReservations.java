@@ -5,10 +5,9 @@
  */
 package vue;
 
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
-import modele.Oeuvre;
-import modele.Reservation;
 
 /**
  *
@@ -27,7 +26,8 @@ public class AfficherReservations extends javax.swing.JFrame {
         }
         else {
             IHM.getAllReservations().stream().forEach((o) -> {
-                listItems.add("nom : "+o.getUsager().getNom()+"     prenom : "+o.getUsager().getPrenom()+"      oeuvre :"+o.getOeuvre().getNom()+" "+o.getDateResa());
+                SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/YYYY");
+                listItems.add("usager : "+o.getUsager().getNom()+", "+o.getUsager().getPrenom()+"      oeuvre :"+o.getOeuvre().getNom()+"       pour la date du : "+dt1.format(o.getDateResa()));
             });
         }
         DefaultComboBoxModel model = new DefaultComboBoxModel(listItems);
@@ -66,7 +66,7 @@ public class AfficherReservations extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)))
@@ -77,7 +77,7 @@ public class AfficherReservations extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -89,7 +89,7 @@ public class AfficherReservations extends javax.swing.JFrame {
        MainWindow mw = new MainWindow();
         mw.setVisible(true);
         mw.setLocationRelativeTo(null);
-        this.setVisible(false);
+        this.setVisible(false);                       
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

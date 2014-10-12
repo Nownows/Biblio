@@ -5,7 +5,13 @@
  */
 package vue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -281,6 +287,10 @@ public class ReservationOeuvre extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnGoResaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoResaActionPerformed
+        if (txtDate.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "La date est obligatoire.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String oeuvre = "";
         if (txtNomOeuvre.getText().equals("")) {
             oeuvre = cmbOeuvres.getSelectedItem().toString();
@@ -300,15 +310,19 @@ public class ReservationOeuvre extends javax.swing.JFrame {
             prenom = txtPrenom.getText();
         }
 
-        int ret = IHM.reserverOeuvre(nom, prenom, oeuvre, txtDate.getText());
-
-        if (ret < 0) {
-            JOptionPane.showMessageDialog(null, "Oeuvre ou Utilisateur incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
-        } else {
-            MainWindow mw = new MainWindow();
-            mw.setVisible(true);
-            mw.setLocationRelativeTo(null);
-            this.setVisible(false);
+        try {
+            Date date = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE).parse(txtDate.getText());
+            int ret = IHM.reserverOeuvre(nom, prenom, oeuvre, date);
+            if (ret < 0) {
+                JOptionPane.showMessageDialog(null, "Oeuvre ou Utilisateur incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            } else {
+                MainWindow mw = new MainWindow();
+                mw.setVisible(true);
+                mw.setLocationRelativeTo(null);
+                this.setVisible(false);
+            }
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Le format de date ne correspond pas. (xx/xx/xxx)", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
 
 
