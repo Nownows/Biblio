@@ -111,6 +111,10 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         btnAfficherResa.setText("Afficher les réservations");
+        btnAfficherResa.setFocusPainted(false);
+        btnAfficherResa.setFocusable(false);
+        btnAfficherResa.setRequestFocusEnabled(false);
+        btnAfficherResa.setRolloverEnabled(false);
         btnAfficherResa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAfficherResaActionPerformed(evt);
@@ -164,6 +168,10 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         btnAjouterOeuvre.setText("Ajouter une oeuvre");
+        btnAjouterOeuvre.setFocusPainted(false);
+        btnAjouterOeuvre.setFocusable(false);
+        btnAjouterOeuvre.setRequestFocusEnabled(false);
+        btnAjouterOeuvre.setRolloverEnabled(false);
         btnAjouterOeuvre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAjouterOeuvreActionPerformed(evt);
@@ -226,7 +234,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
         );
@@ -263,7 +271,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnGestionUsagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionUsagerActionPerformed
-        GestionUsagers gu = new GestionUsagers();
+        AffichageUsagers gu = new AffichageUsagers();
         gu.setVisible(true);
         gu.setLocationRelativeTo(null);
         this.setVisible(false);

@@ -22,11 +22,11 @@ public class AfficherReservations extends javax.swing.JFrame {
     public AfficherReservations() {
         initComponents();
         Vector listItems = new Vector();
-        if (Reservation.getAllReservations().isEmpty()) {
+        if (IHM.getAllReservations().isEmpty()) {
             listItems.add("Aucune réservation");
         }
         else {
-            Reservation.getAllReservations().stream().forEach((o) -> {
+            IHM.getAllReservations().stream().forEach((o) -> {
                 listItems.add("nom : "+o.getUsager().getNom()+"     prenom : "+o.getUsager().getPrenom()+"      oeuvre :"+o.getOeuvre().getNom()+" "+o.getDateResa());
             });
         }

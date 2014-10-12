@@ -24,7 +24,7 @@ public class Reservation {
         return listReservations;
     }
 
-    public void supprimerResa(Oeuvre o, Usager u, String d) {
+    public static void supprimerResa(Oeuvre o, Usager u, String d) {
         listReservations.stream().filter((r) -> (r.getUsager().equals(u) && r.getOeuvre().equals(o) && r.getDateResa().equals(d))).forEach((r) -> {
             listReservations.remove(r);
         });

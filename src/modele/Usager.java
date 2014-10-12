@@ -1,6 +1,7 @@
 package modele;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Usager {
@@ -8,7 +9,7 @@ public class Usager {
     private int id;
     private String nom;
     private String prenom;
-    public static Set<Usager> listUsagers = new HashSet<>();
+    private static Set<Usager> listUsagers = new HashSet<>();
 
     public Usager(String nom, String prenom) {
         this.nom = nom;
@@ -37,6 +38,10 @@ public class Usager {
         return null;
     }
 
+    public static Set<Usager> getAllUsagers() {
+        return listUsagers;
+    }
+    
     public int getId() {
         return id;
     }

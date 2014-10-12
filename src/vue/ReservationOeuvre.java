@@ -5,15 +5,9 @@
  */
 package vue;
 
-import controller.Gestion;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import modele.Oeuvre;
-import modele.Reservation;
-import modele.Usager;
 
 /**
  *
@@ -24,16 +18,13 @@ public class ReservationOeuvre extends javax.swing.JFrame {
     /**
      * Creates new form ReservationOeuvre
      */
-    Gestion gestion;
-
     public ReservationOeuvre() {
-        gestion = new Gestion();
         initComponents();
         Vector comboBoxItems = new Vector();
-        if (Oeuvre.listOeuvre.isEmpty()) {
+        if (IHM.getAllOeuvres().isEmpty()) {
             comboBoxItems.add("Aucune oeuvre");
         } else {
-            Oeuvre.listOeuvre.stream().forEach((o) -> {
+            IHM.getAllOeuvres().stream().forEach((o) -> {
                 comboBoxItems.add(o.getNom());
             });
         }
@@ -41,10 +32,10 @@ public class ReservationOeuvre extends javax.swing.JFrame {
         cmbOeuvres.setModel(model);
 
         Vector comboBoxItemsUsager = new Vector();
-        if (Usager.listUsagers.isEmpty()) {
+        if (IHM.getAllUsagers().isEmpty()) {
             comboBoxItemsUsager.add("Aucun usager");
         } else {
-            Usager.listUsagers.stream().forEach((u) -> {
+            IHM.getAllUsagers().stream().forEach((u) -> {
                 comboBoxItemsUsager.add(u.getNom() + ' ' + u.getPrenom());
             });
         }
@@ -291,38 +282,33 @@ public class ReservationOeuvre extends javax.swing.JFrame {
 
     private void btnGoResaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoResaActionPerformed
         String oeuvre = "";
-        String erreurs = "";
         if (txtNomOeuvre.getText().equals("")) {
             oeuvre = cmbOeuvres.getSelectedItem().toString();
         } else {
             oeuvre = txtNomOeuvre.getText();
         }
-        Oeuvre o = Oeuvre.e_idf(oeuvre);
 
-        Usager u;
+        String nom, prenom;
         if (txtNom.getText().equals("") && txtPrenom.getText().equals("")) {
             String utilisateur = cmbUsager.getSelectedItem().toString();
             String[] util = utilisateur.split(" ");
-            u = Usager.e_idf(util[0], util[1]);
+            nom = util[0];
+            prenom = util[1];
 
         } else {
-            u = Usager.e_idf(txtNom.getText(), txtPrenom.getText());
+            nom = txtNom.getText();
+            prenom = txtPrenom.getText();
         }
 
-        if (u != null || o != null) {
-            Reservation res = new Reservation(u, o, txtDate.getText());
+        int ret = IHM.reserverOeuvre(nom, prenom, oeuvre, txtDate.getText());
+
+        if (ret < 0) {
+            JOptionPane.showMessageDialog(null, "Oeuvre ou Utilisateur incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        } else {
             MainWindow mw = new MainWindow();
             mw.setVisible(true);
             mw.setLocationRelativeTo(null);
             this.setVisible(false);
-        } else {
-            if (o == null) {
-                erreurs += "Oeuvre non trouvée\n";
-            }
-            if (u == null) {
-                erreurs += "Utilisateur non trouvé\n";
-            }
-            JOptionPane.showMessageDialog(null, erreurs, "Erreur", JOptionPane.ERROR_MESSAGE);
         }
 
 

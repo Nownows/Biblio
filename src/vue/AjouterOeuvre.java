@@ -5,8 +5,6 @@
  */
 package vue;
 
-import controller.Gestion;
-
 /**
  *
  * @author Main
@@ -16,10 +14,8 @@ public class AjouterOeuvre extends javax.swing.JFrame {
     /**
      * Creates new form AjouterOeuvre
      */
-    Gestion gestion;
     
     public AjouterOeuvre() {
-        gestion = new Gestion();
         initComponents();
     }
 
@@ -120,7 +116,7 @@ public class AjouterOeuvre extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
-        gestion.ajouterOeuvre(txtNomOeuvre.getText(), txtAuteur.getText());
+        IHM.ajouterOeuvre(txtNomOeuvre.getText(), txtAuteur.getText());
         txtNomOeuvre.setText(null);
         txtAuteur.setText(null);
     }//GEN-LAST:event_btnAjouterActionPerformed

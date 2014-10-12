@@ -5,24 +5,17 @@
  */
 package vue;
 
-import controller.Gestion;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.ListModel;
 import modele.Usager;
 
 /**
  *
  * @author ASUS
  */
-public class GestionUsagers extends javax.swing.JFrame {
-
-    Gestion gestion;
+public class AffichageUsagers extends javax.swing.JFrame {
     /**
      * Creates new form GestionUsagers
      */
-    public GestionUsagers() {
-        gestion = new Gestion();
+    public AffichageUsagers() {
         initComponents();
     }
 
@@ -287,13 +280,13 @@ public class GestionUsagers extends javax.swing.JFrame {
     }//GEN-LAST:event_bntRetourActionPerformed
 
     private void bntAjouterUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAjouterUtilisateurActionPerformed
-        gestion.ajouterUtilisateur(txtAjouterUtilisateurNom.getText(), txtAjouterUtilisateurPrenom.getText());
+        IHM.ajouterUsager(txtAjouterUtilisateurNom.getText(), txtAjouterUtilisateurPrenom.getText());
         txtAjouterUtilisateurNom.setText(null);
         txtAjouterUtilisateurPrenom.setText(null);
     }//GEN-LAST:event_bntAjouterUtilisateurActionPerformed
 
     private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
-        Usager u = gestion.rechercherUsager(txtRechercherNom.getText(), txtRechercherPrenom.getText());
+        Usager u = IHM.rechercherUsager(txtRechercherNom.getText(), txtRechercherPrenom.getText());
         if (u != null) {
            lblNomTrouve.setText(u.getNom());
            lblPrenomTrouve.setText(u.getPrenom()); 

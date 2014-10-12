@@ -8,7 +8,7 @@ public class Oeuvre {
     private int id;
     private String nom;
     private String auteur;
-    public static List<Oeuvre> listOeuvre =  new ArrayList<>() ;
+    private static List<Oeuvre> listOeuvre =  new ArrayList<>() ;
 
     public Oeuvre(String nom, String auteur) {
         this.id = listOeuvre.size();
@@ -24,6 +24,10 @@ public class Oeuvre {
             }
         }
         return null;
+    }
+    
+    public static List<Oeuvre> getAllOeuvres() {
+        return listOeuvre;
     }
 
     public int getId() {

@@ -1,16 +1,25 @@
 package controller;
 
-import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import modele.Oeuvre;
+import modele.Reservation;
 import modele.Usager;
 
 public class Gestion {
     
-    public void reserver(String nomOeuvre, String nomUsager){
-        
+    public int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, String date){
+        Oeuvre o = Oeuvre.e_idf(nomOeuvre);
+        Usager u = Usager.e_idf(nomUsager, prenomUsager);
+        if (o == null || u == null) {
+            return -1;
+        }
+               
+        Reservation r = new Reservation(u, o, date);
+        return 1;
     }
     
-    public void emprunter(String nomOeuvre, String nomUsager){
+    public void emprunterExemplaire(String nomOeuvre, String nomUsager){
         
     }
     
@@ -18,11 +27,13 @@ public class Gestion {
         
     } 
     
-    public void supprimerReservation(String nomOeuvre, String nomUsager, Date d ){
-        
+    public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, String date ){
+        Oeuvre o = Oeuvre.e_idf(nomOeuvre);
+        Usager u = Usager.e_idf(nomUsager, prenomUsager);
+        Reservation.supprimerResa(o, u, date);
     }
     
-    public void ajouterUtilisateur(String nom, String prenom) {
+    public void ajouterUsager(String nom, String prenom) {
         Usager tmp = new Usager(nom,prenom);
     }
     
@@ -32,6 +43,16 @@ public class Gestion {
     
     public void ajouterOeuvre(String nom, String auteur) {
         Oeuvre tmp = new Oeuvre(nom, auteur);
+    }
+    
+    public List<Reservation> getAllReservations(){
+        return Reservation.getAllReservations();
+    }
+    public List<Oeuvre> getAllOeuvres(){
+        return Oeuvre.getAllOeuvres();
+    }
+    public Set<Usager> getAllUsagers(){
+        return Usager.getAllUsagers();
     }
     
 }
