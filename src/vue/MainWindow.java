@@ -186,6 +186,10 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         btnAjouterExemplaire.setText("Ajouter des exemplaires d'oeuvres");
+        btnAjouterExemplaire.setFocusPainted(false);
+        btnAjouterExemplaire.setFocusable(false);
+        btnAjouterExemplaire.setRequestFocusEnabled(false);
+        btnAjouterExemplaire.setRolloverEnabled(false);
         btnAjouterExemplaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAjouterExemplaireActionPerformed(evt);
@@ -246,7 +250,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
         );

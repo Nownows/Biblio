@@ -5,6 +5,10 @@
  */
 package vue;
 
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Main
@@ -16,6 +20,16 @@ public class AjouterExemplaire extends javax.swing.JFrame {
      */
     public AjouterExemplaire() {
         initComponents();
+        Vector comboBoxItems = new Vector();
+        if (IHM.getAllOeuvres().isEmpty()) {
+            comboBoxItems.add("Aucune oeuvre");
+        } else {
+            IHM.getAllOeuvres().stream().forEach((o) -> {
+                comboBoxItems.add(o.getNom());
+            });
+        }
+        DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
+        cmbOeuvres.setModel(model);
     }
 
     /**
@@ -67,6 +81,11 @@ public class AjouterExemplaire extends javax.swing.JFrame {
         jLabel5.setText("État :");
 
         jButton2.setText("Ajouter");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         cmbEtat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Neuf", "Moyen", "Pourri" }));
 
@@ -125,7 +144,7 @@ public class AjouterExemplaire extends javax.swing.JFrame {
                     .addComponent(cmbEtat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(jButton2)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,7 +165,7 @@ public class AjouterExemplaire extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -160,6 +179,16 @@ public class AjouterExemplaire extends javax.swing.JFrame {
         mw.setLocationRelativeTo(null);
         this.setVisible(false);       
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (txtEditeur.getText().equals("") || txtType.getText().equals("") || txtId.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Toutes les informations sont requises.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+        IHM.ajouterExemplaire(cmbOeuvres.getSelectedItem().toString(), Integer.parseInt(txtId.getText()) , 
+                txtEditeur.getText(), txtType.getText(), cmbEtat.getSelectedItem().toString(), true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
