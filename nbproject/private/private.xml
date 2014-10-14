@@ -3,21 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Netbeans/projets/bibli/src/modele/Oeuvre.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/ReservationOeuvre.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/RetraitExemplaire.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/modele/Usager.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/AjouterOeuvre.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/SupprimerReservation.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/modele/Exemplaire.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/controller/Gestion.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/AffichageUsagers.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/AfficherReservations.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/RetourExemplaire.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/IHM.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/AjouterExemplaire.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/modele/Reservation.java</file>
-            <file>file:/F:/Netbeans/projets/bibli/src/vue/MainWindow.java</file>
+            <file>file:/D:/projets/src/vue/IHM.java</file>
+            <file>file:/D:/projets/src/vue/AffichageUsagers.java</file>
+            <file>file:/D:/projets/src/vue/RetraitExemplaire.java</file>
+            <file>file:/D:/projets/src/modele/Emprunt.java</file>
+            <file>file:/D:/projets/src/vue/ReservationOeuvre.java</file>
+            <file>file:/D:/projets/src/vue/AjouterOeuvre.java</file>
+            <file>file:/D:/projets/src/vue/AjouterExemplaire.java</file>
+            <file>file:/D:/projets/src/vue/MainWindow.java</file>
+            <file>file:/D:/projets/src/vue/RetourExemplaire.java</file>
+            <file>file:/D:/projets/src/controller/Gestion.java</file>
+            <file>file:/D:/projets/src/vue/AfficherReservations.java</file>
+            <file>file:/D:/projets/src/vue/SupprimerReservation.java</file>
         </group>
     </open-files>
 </project-private>

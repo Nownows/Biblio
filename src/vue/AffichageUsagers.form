@@ -172,6 +172,8 @@
         <Component class="javax.swing.JButton" name="btnRechercher">
           <Properties>
             <Property name="text" type="java.lang.String" value="Rechercher"/>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+            <Property name="rolloverEnabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRechercherActionPerformed"/>
@@ -182,6 +184,8 @@
     <Component class="javax.swing.JButton" name="bntRetour">
       <Properties>
         <Property name="text" type="java.lang.String" value="Retour"/>
+        <Property name="requestFocusEnabled" type="boolean" value="false"/>
+        <Property name="rolloverEnabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntRetourActionPerformed"/>
@@ -279,6 +283,8 @@
         <Component class="javax.swing.JButton" name="bntAjouterUtilisateur">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter"/>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+            <Property name="rolloverEnabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAjouterUtilisateurActionPerformed"/>

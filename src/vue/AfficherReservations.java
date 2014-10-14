@@ -18,14 +18,16 @@ public class AfficherReservations extends javax.swing.JFrame {
     /**
      * Creates new form AfficherReservations
      */
+    IHM ihm;
     public AfficherReservations() {
+        ihm = new IHM();
         initComponents();
         Vector listItems = new Vector();
-        if (IHM.getAllReservations().isEmpty()) {
+        if (ihm.getAllReservations().isEmpty()) {
             listItems.add("Aucune réservation");
         }
         else {
-            IHM.getAllReservations().stream().forEach((o) -> {
+            ihm.getAllReservations().stream().forEach((o) -> {
                 SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/YYYY");
                 listItems.add("usager : "+o.getUsager().getNom()+", "+o.getUsager().getPrenom()+"      oeuvre :"+o.getOeuvre().getNom()+"       pour la date du : "+dt1.format(o.getDateResa()));
             });

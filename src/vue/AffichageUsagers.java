@@ -15,7 +15,10 @@ public class AffichageUsagers extends javax.swing.JFrame {
     /**
      * Creates new form GestionUsagers
      */
+    IHM ihm;
+    
     public AffichageUsagers() {
+        ihm = new IHM();
         initComponents();
     }
 
@@ -78,6 +81,8 @@ public class AffichageUsagers extends javax.swing.JFrame {
         });
 
         btnRechercher.setText("Rechercher");
+        btnRechercher.setRequestFocusEnabled(false);
+        btnRechercher.setRolloverEnabled(false);
         btnRechercher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRechercherActionPerformed(evt);
@@ -123,6 +128,8 @@ public class AffichageUsagers extends javax.swing.JFrame {
         txtRechercherNom.getAccessibleContext().setAccessibleName("jTextNom");
 
         bntRetour.setText("Retour");
+        bntRetour.setRequestFocusEnabled(false);
+        bntRetour.setRolloverEnabled(false);
         bntRetour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntRetourActionPerformed(evt);
@@ -149,6 +156,8 @@ public class AffichageUsagers extends javax.swing.JFrame {
         jLabel4.setText("Prenom :");
 
         bntAjouterUtilisateur.setText("Ajouter");
+        bntAjouterUtilisateur.setRequestFocusEnabled(false);
+        bntAjouterUtilisateur.setRolloverEnabled(false);
         bntAjouterUtilisateur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntAjouterUtilisateurActionPerformed(evt);
@@ -280,13 +289,17 @@ public class AffichageUsagers extends javax.swing.JFrame {
     }//GEN-LAST:event_bntRetourActionPerformed
 
     private void bntAjouterUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAjouterUtilisateurActionPerformed
-        IHM.ajouterUsager(txtAjouterUtilisateurNom.getText(), txtAjouterUtilisateurPrenom.getText());
+        ihm.ajouterUsager(txtAjouterUtilisateurNom.getText(), txtAjouterUtilisateurPrenom.getText());
         txtAjouterUtilisateurNom.setText(null);
         txtAjouterUtilisateurPrenom.setText(null);
+        MainWindow mw = new MainWindow();
+        mw.setVisible(true);
+        mw.setLocationRelativeTo(null);
+        this.setVisible(false);
     }//GEN-LAST:event_bntAjouterUtilisateurActionPerformed
 
     private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
-        Usager u = IHM.rechercherUsager(txtRechercherNom.getText(), txtRechercherPrenom.getText());
+        Usager u = ihm.rechercherUsager(txtRechercherNom.getText(), txtRechercherPrenom.getText());
         if (u != null) {
            lblNomTrouve.setText(u.getNom());
            lblPrenomTrouve.setText(u.getPrenom()); 

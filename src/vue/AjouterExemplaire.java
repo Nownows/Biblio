@@ -18,13 +18,15 @@ public class AjouterExemplaire extends javax.swing.JFrame {
     /**
      * Creates new form AjouterExemplaire
      */
+    IHM ihm;
     public AjouterExemplaire() {
+        ihm = new IHM();
         initComponents();
         Vector comboBoxItems = new Vector();
-        if (IHM.getAllOeuvres().isEmpty()) {
+        if (ihm.getAllOeuvres().isEmpty()) {
             comboBoxItems.add("Aucune oeuvre");
         } else {
-            IHM.getAllOeuvres().stream().forEach((o) -> {
+            ihm.getAllOeuvres().stream().forEach((o) -> {
                 comboBoxItems.add(o.getNom());
             });
         }
@@ -185,7 +187,7 @@ public class AjouterExemplaire extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Toutes les informations sont requises.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
         else {
-        IHM.ajouterExemplaire(cmbOeuvres.getSelectedItem().toString(), Integer.parseInt(txtId.getText()) , 
+        ihm.ajouterExemplaire(cmbOeuvres.getSelectedItem().toString(), Integer.parseInt(txtId.getText()) , 
                 txtEditeur.getText(), txtType.getText(), cmbEtat.getSelectedItem().toString(), true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed

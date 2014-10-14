@@ -7,6 +7,8 @@ public class Emprunt {
     private int id;
     private Date date_emprunt;
     private Date date_retour;
+    private Usager usager;
+    private Exemplaire exemplaire;
 
     public Emprunt(int id, Date date_emprunt, Date date_retour) {
         this.id = id;

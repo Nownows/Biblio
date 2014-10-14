@@ -24,13 +24,15 @@ public class ReservationOeuvre extends javax.swing.JFrame {
     /**
      * Creates new form ReservationOeuvre
      */
+    IHM ihm;
     public ReservationOeuvre() {
+        ihm = new IHM();
         initComponents();
         Vector comboBoxItems = new Vector();
-        if (IHM.getAllOeuvres().isEmpty()) {
+        if (ihm.getAllOeuvres().isEmpty()) {
             comboBoxItems.add("Aucune oeuvre");
         } else {
-            IHM.getAllOeuvres().stream().forEach((o) -> {
+            ihm.getAllOeuvres().stream().forEach((o) -> {
                 comboBoxItems.add(o.getNom());
             });
         }
@@ -38,10 +40,10 @@ public class ReservationOeuvre extends javax.swing.JFrame {
         cmbOeuvres.setModel(model);
 
         Vector comboBoxItemsUsager = new Vector();
-        if (IHM.getAllUsagers().isEmpty()) {
+        if (ihm.getAllUsagers().isEmpty()) {
             comboBoxItemsUsager.add("Aucun usager");
         } else {
-            IHM.getAllUsagers().stream().forEach((u) -> {
+            ihm.getAllUsagers().stream().forEach((u) -> {
                 comboBoxItemsUsager.add(u.getNom() + ' ' + u.getPrenom());
             });
         }
@@ -312,7 +314,7 @@ public class ReservationOeuvre extends javax.swing.JFrame {
 
         try {
             Date date = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE).parse(txtDate.getText());
-            int ret = IHM.reserverOeuvre(nom, prenom, oeuvre, date);
+            int ret = ihm.reserverOeuvre(nom, prenom, oeuvre, date);
             if (ret < 0) {
                 JOptionPane.showMessageDialog(null, "Oeuvre ou Utilisateur incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
             } else {

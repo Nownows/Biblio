@@ -3,15 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package vue;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,8 +14,17 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form Ihm
      */
+    ReservationOeuvre ro;
+    SupprimerReservation sr;
+    RetourExemplaire re;
+    RetraitExemplaire re2;
+    AffichageUsagers gu;
+    AjouterOeuvre ao;
+    AfficherReservations ar;
+    AjouterExemplaire ae;
+
     public MainWindow() {
-        initComponents();      
+        initComponents();
     }
 
     /**
@@ -259,49 +260,49 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ReservationOeuvre ro = new ReservationOeuvre();
+        ro = new ReservationOeuvre();
         ro.setVisible(true);
         ro.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SupprimerReservation sr = new SupprimerReservation();
+        sr = new SupprimerReservation();
         sr.setVisible(true);
         sr.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        RetourExemplaire re = new RetourExemplaire();
+        re = new RetourExemplaire();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        RetraitExemplaire re = new RetraitExemplaire();
+        re2 = new RetraitExemplaire();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnGestionUsagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionUsagerActionPerformed
-        AffichageUsagers gu = new AffichageUsagers();
+        gu = new AffichageUsagers();
         gu.setVisible(true);
         gu.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_btnGestionUsagerActionPerformed
 
     private void btnAjouterOeuvreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterOeuvreActionPerformed
-        AjouterOeuvre ao = new AjouterOeuvre();
+        ao = new AjouterOeuvre();
         ao.setVisible(true);
         ao.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_btnAjouterOeuvreActionPerformed
 
     private void btnAfficherResaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfficherResaActionPerformed
-        AfficherReservations ar = new AfficherReservations();
+        ar = new AfficherReservations();
         ar.setVisible(true);
         ar.setLocationRelativeTo(null);
         this.setVisible(false);
@@ -312,7 +313,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnAjouterExemplaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterExemplaireActionPerformed
-        AjouterExemplaire ae = new AjouterExemplaire();
+        ae = new AjouterExemplaire();
         ae.setVisible(true);
         ae.setLocationRelativeTo(null);
         this.setVisible(false);

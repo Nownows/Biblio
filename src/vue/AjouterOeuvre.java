@@ -14,8 +14,10 @@ public class AjouterOeuvre extends javax.swing.JFrame {
     /**
      * Creates new form AjouterOeuvre
      */
+    IHM ihm;
     
     public AjouterOeuvre() {
+        ihm = new IHM();
         initComponents();
     }
 
@@ -116,9 +118,13 @@ public class AjouterOeuvre extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
-        IHM.ajouterOeuvre(txtNomOeuvre.getText(), txtAuteur.getText());
+        ihm.ajouterOeuvre(txtNomOeuvre.getText(), txtAuteur.getText());
         txtNomOeuvre.setText(null);
         txtAuteur.setText(null);
+        MainWindow mw = new MainWindow();
+        mw.setVisible(true);
+        mw.setLocationRelativeTo(null);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAjouterActionPerformed
 
 

@@ -15,7 +15,9 @@ public class RetourExemplaire extends javax.swing.JFrame {
     /**
      * Creates new form RetourExemplaire
      */
+    IHM ihm;
     public RetourExemplaire() {
+        ihm = new IHM();
         initComponents();
     }
 

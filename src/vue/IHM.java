@@ -10,34 +10,34 @@ import modele.Usager;
 
 public class IHM {
     
-    static Gestion gestion = new Gestion();
+    Gestion gestion = new Gestion();
     
-    public static List<Reservation> getAllReservations(){
+    public List<Reservation> getAllReservations(){
         return gestion.getAllReservations();
     }
-    public static List<Oeuvre> getAllOeuvres(){
+    public List<Oeuvre> getAllOeuvres(){
         return gestion.getAllOeuvres();
     }
-    public static Set<Usager> getAllUsagers(){
+    public Set<Usager> getAllUsagers(){
         return gestion.getAllUsagers();
     }
-    public static void ajouterOeuvre(String nom, String auteur){
+    public void ajouterOeuvre(String nom, String auteur){
         gestion.ajouterOeuvre(nom, auteur);
     }
-    public static void ajouterUsager(String nom, String prenom){
+    public void ajouterUsager(String nom, String prenom){
         gestion.ajouterUsager(nom, prenom);
     }
-    public static Usager rechercherUsager(String nom, String prenom) {
+    public Usager rechercherUsager(String nom, String prenom) {
         return gestion.rechercherUsager(nom, prenom);
     }
 
-    public static int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
+    public int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
         return gestion.reserverOeuvre(nomUsager, prenomUsager, nomOeuvre, date );
     }
-    public static void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date){
+    public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date){
         gestion.supprimerReservation(nomUsager, prenomUsager,nomOeuvre, date);
     }
-    public static void ajouterExemplaire(String nomOeuvre,int id, String editeur, String Type, String etat, Boolean disponible){
+    public void ajouterExemplaire(String nomOeuvre,int id, String editeur, String Type, String etat, Boolean disponible){
         gestion.ajouterExemplaire(nomOeuvre, id, editeur, Type, etat, disponible);
     }
     
