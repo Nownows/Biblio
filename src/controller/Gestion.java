@@ -24,8 +24,7 @@ public class Gestion {
         if (o == null || u == null) {
             return -1;
         }
-
-        Reservation r = new Reservation(u, o, date);
+        mm.nouvelleReservation(u, o, date);
         return 1;
     }
 
@@ -49,7 +48,7 @@ public class Gestion {
     public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
         Oeuvre o = mm.getOeuvre(nomOeuvre);
         Usager u = mm.getUsager(nomUsager, prenomUsager);
-        Reservation.supprimerResa(o, u, date);
+        mm.supprimerResa(o, u, date);
     }
 
     public void ajouterUsager(String nomUsager, String prenomUsager) {
@@ -65,7 +64,7 @@ public class Gestion {
     }
 
     public List<Reservation> getAllReservations() {
-        return Reservation.getAllReservations();
+        return mm.getAllReservations();
     }
 
     public List<Oeuvre> getAllOeuvres() {

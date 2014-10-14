@@ -85,7 +85,7 @@ public class ModelManager {
     }
 
     public void nouvelleReservation(Usager u, Oeuvre o, Date d) {
-        Reservation r = new Reservation(u, o, d);
+        Reservation r = new Reservation(listReservations.size(), u, o, d);
         listReservations.add(r);
     }
 
@@ -95,6 +95,18 @@ public class ModelManager {
 
     public List<Oeuvre> getAllOeuvres() {
         return listOeuvre;
+    }
+
+    public List<Reservation> getAllReservations() {
+        return listReservations;
+    }
+
+    public void supprimerResa(Oeuvre o, Usager u, Date d) {
+        for(Reservation r : listReservations){
+            if (r.getOeuvre().equals(o) && r.getUsager().equals(u) && r.getDateResa().equals(d)){
+                listReservations.remove(r);
+            }
+        }
     }
 
 }

@@ -11,25 +11,15 @@ public class Reservation {
     private Date dateResa;
     private Usager u;
     private Oeuvre o;
-    private static List<Reservation> listReservations =  new ArrayList<>() ;
 
-    public Reservation(Usager u, Oeuvre o,Date dateResa) {
+    public Reservation(int id,Usager u, Oeuvre o,Date dateResa) {
         this.o = o;
         this.u = u;
         this.dateResa = dateResa;
-        this.id = listReservations.size();
-        listReservations.add(this);
+        this.id = id;
     }
     
-    public static List<Reservation> getAllReservations() {
-        return listReservations;
-    }
-
-    public static void supprimerResa(Oeuvre o, Usager u, Date d) {
-        listReservations.stream().filter((r) -> (r.getUsager().equals(u) && r.getOeuvre().equals(o) && r.getDateResa().equals(d))).forEach((r) -> {
-            listReservations.remove(r);
-        });
-    }
+    
 
     public Usager getUsager() {
         return u;
