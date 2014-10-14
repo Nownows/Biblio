@@ -4,32 +4,42 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import modele.Emprunt;
+import modele.Emprunts;
 import modele.Exemplaire;
-import modele.ModelManager;
 import modele.Oeuvre;
+import modele.Oeuvres;
 import modele.Reservation;
+import modele.Reservations;
 import modele.Usager;
+import modele.Usagers;
 
 public class Gestion {
+
+    private Emprunts emprunts;
+    private Oeuvres oeuvres;
+    private Reservations reservations;
+    private Usagers usagers;
+
     
-    private ModelManager mm;
-    
-    public Gestion(){
-        mm = ModelManager.getInstance();
+    public Gestion() {
+        emprunts = Emprunts.getInstance();
+        oeuvres = Oeuvres.getInstance();
+        reservations = Reservations.getInstance();
+        usagers = Usagers.getInstance();
     }
 
     public int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
-        Oeuvre o = mm.getOeuvre(nomOeuvre);
-        Usager u = mm.getUsager(nomUsager, prenomUsager);
+        Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
+        Usager u = usagers.getUsager(nomUsager, prenomUsager);
         if (o == null || u == null) {
             return -1;
         }
-        mm.nouvelleReservation(u, o, date);
+        reservations.nouvelleReservation(u, o, date);
         return 1;
     }
 
     public int emprunterExemplaire(String nomUsager, String prenomUsager, String nomOeuvre, Date dateRetour) {
-        Oeuvre o = mm.getOeuvre(nomOeuvre);
+        Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
         long now = System.currentTimeMillis();
         Date dateEmprunt = new java.util.Date(now);
         Exemplaire e = o.trouverExemplaire();
@@ -37,7 +47,7 @@ public class Gestion {
             return -1;
         }
 
-        Emprunt emp = new Emprunt(mm.getUsager(nomUsager, prenomUsager),e, dateEmprunt, dateRetour);
+        Emprunt emp = new Emprunt(usagers.getUsager(nomUsager, prenomUsager), e, dateEmprunt, dateRetour);
         return 1;
     }
 
@@ -46,38 +56,38 @@ public class Gestion {
     }
 
     public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
-        Oeuvre o = mm.getOeuvre(nomOeuvre);
-        Usager u = mm.getUsager(nomUsager, prenomUsager);
-        mm.supprimerResa(o, u, date);
+        Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
+        Usager u = usagers.getUsager(nomUsager, prenomUsager);
+        reservations.supprimerResa(o, u, date);
     }
 
     public void ajouterUsager(String nomUsager, String prenomUsager) {
-        mm.nouvelUsager(nomUsager, prenomUsager);
+        usagers.nouvelUsager(nomUsager, prenomUsager);
     }
 
     public Usager rechercherUsager(String nomUsager, String prenomUsager) {
-        return mm.getUsager(nomUsager, prenomUsager);
+        return usagers.getUsager(nomUsager, prenomUsager);
     }
 
     public void ajouterOeuvre(String nom, String auteur) {
-        mm.nouvelleOeuvre(nom, auteur);
+        oeuvres.nouvelleOeuvre(nom, auteur);
     }
 
     public List<Reservation> getAllReservations() {
-        return mm.getAllReservations();
+        return reservations.getAllReservations();
     }
 
     public List<Oeuvre> getAllOeuvres() {
-        return mm.getAllOeuvres();
+        return oeuvres.getAllOeuvres();
     }
 
     public Set<Usager> getAllUsagers() {
-        return mm.getAllUsagers();
+        return usagers.getAllUsagers();
     }
 
     public void ajouterExemplaire(String nomOeuvre, int id, String editeur, String Type, String etat, Boolean disponible) {
         Exemplaire e = new Exemplaire(id, editeur, Type, etat, disponible);
-        Oeuvre o = mm.getOeuvre(nomOeuvre);
+        Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
         o.ajouterExemplaire(e);
     }
 
