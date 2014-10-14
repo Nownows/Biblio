@@ -15,10 +15,10 @@ import modele.Usagers;
 
 public class Gestion {
 
-    private Emprunts emprunts;
-    private Oeuvres oeuvres;
-    private Reservations reservations;
-    private Usagers usagers;
+    private final Emprunts emprunts;
+    private final Oeuvres oeuvres;
+    private final Reservations reservations;
+    private final Usagers usagers;
 
     
     public Gestion() {
@@ -47,12 +47,12 @@ public class Gestion {
             return -1;
         }
 
-        Emprunt emp = new Emprunt(usagers.getUsager(nomUsager, prenomUsager), e, dateEmprunt, dateRetour);
+        emprunts.ajouterEmprunt(new Emprunt(usagers.getUsager(nomUsager, prenomUsager), e, dateEmprunt, dateRetour));
         return 1;
     }
 
     public void retournerExemplaire(String nomOeuvre, int idExemplaire, String nomusager) {
-
+        
     }
 
     public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {

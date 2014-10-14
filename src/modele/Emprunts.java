@@ -27,5 +27,9 @@ public class Emprunts {
         }
         return INSTANCE;
     }
+    
+    public void ajouterEmprunt(Emprunt e){
+        listEmprunts.add(e);
+    }
 
 }

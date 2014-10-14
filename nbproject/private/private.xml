@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/Netbeans/projets/bibli/src/modele/Emprunts.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/modele/Oeuvre.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/ReservationOeuvre.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/RetraitExemplaire.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/modele/Usager.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/AjouterOeuvre.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/SupprimerReservation.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/modele/Exemplaire.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/controller/Gestion.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/AffichageUsagers.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/AfficherReservations.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/RetourExemplaire.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/IHM.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/AjouterExemplaire.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/modele/Reservation.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/modele/Emprunt.java</file>
+            <file>file:/F:/Netbeans/projets/bibli/src/vue/MainWindow.java</file>
+        </group>
     </open-files>
 </project-private>

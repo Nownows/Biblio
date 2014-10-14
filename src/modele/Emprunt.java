@@ -17,10 +17,6 @@ public class Emprunt {
         this.date_retour = date_retour;
     }
     
-    public void creerEmprunt(Usager u, Exemplaire e){
-        
-    }
-    
     public void rendreEmprunt(Usager u, Exemplaire e, Date dr){
         
     }
