@@ -1,47 +1,17 @@
 package modele;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class Usager {
 
     private int id;
     private String nom;
     private String prenom;
-    private static Set<Usager> listUsagers = new HashSet<>();
 
-    public Usager(String nom, String prenom) {
+    public Usager(int id, String nom, String prenom) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.id = listUsagers.size();
-        // on ajoute l'usager à la liste
-        listUsagers.add(this);
     }
 
-    public static Usager e_idf(String nom, String prenom) {
-        for (Usager u : listUsagers) {
-            // si on trouve le nom de famille
-            if (u.getNom().equals(nom)) {
-                // s'il n'y a pas de prenom
-                if (prenom.equals("")) {
-                    return u;
-                } else {
-                    // si noml et prenom correspondent
-                    if (u.getPrenom().equals(prenom)) {
-                        return u;
-                    }
-                }
-            }
-        }
-        // non trouvé
-        return null;
-    }
-
-    public static Set<Usager> getAllUsagers() {
-        return listUsagers;
-    }
-    
     public int getId() {
         return id;
     }

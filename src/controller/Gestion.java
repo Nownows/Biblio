@@ -3,64 +3,83 @@ package controller;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import modele.Emprunt;
+import modele.Exemplaire;
+import modele.ModelManager;
 import modele.Oeuvre;
 import modele.Reservation;
 import modele.Usager;
-import modele.Exemplaire;
 
 public class Gestion {
     
-    public int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, Date date){
-        Oeuvre o = Oeuvre.e_idf(nomOeuvre);
-        Usager u = Usager.e_idf(nomUsager, prenomUsager);
+    private ModelManager mm;
+    
+    public Gestion(){
+        mm = ModelManager.getInstance();
+    }
+
+    public int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
+        Oeuvre o = mm.getOeuvre(nomOeuvre);
+        Usager u = mm.getUsager(nomUsager, prenomUsager);
         if (o == null || u == null) {
             return -1;
         }
- 
-        
+
         Reservation r = new Reservation(u, o, date);
         return 1;
     }
-    
-    public void emprunterExemplaire(String nomOeuvre, String nomUsager){
-        
+
+    public int emprunterExemplaire(String nomUsager, String prenomUsager, String nomOeuvre, Date dateRetour) {
+        Oeuvre o = mm.getOeuvre(nomOeuvre);
+        long now = System.currentTimeMillis();
+        Date dateEmprunt = new java.util.Date(now);
+        Exemplaire e = o.trouverExemplaire();
+        if (e == null) {
+            return -1;
+        }
+
+        Emprunt emp = new Emprunt(mm.getUsager(nomUsager, prenomUsager),e, dateEmprunt, dateRetour);
+        return 1;
     }
-    
-    public void retournerExemplaire(String nomOeuvre, int idExemplaire, String nomusager){
-        
-    } 
-    
-    public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date ){
-        Oeuvre o = Oeuvre.e_idf(nomOeuvre);
-        Usager u = Usager.e_idf(nomUsager, prenomUsager);
+
+    public void retournerExemplaire(String nomOeuvre, int idExemplaire, String nomusager) {
+
+    }
+
+    public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
+        Oeuvre o = mm.getOeuvre(nomOeuvre);
+        Usager u = mm.getUsager(nomUsager, prenomUsager);
         Reservation.supprimerResa(o, u, date);
     }
-    
-    public void ajouterUsager(String nom, String prenom) {
-        Usager tmp = new Usager(nom,prenom);
+
+    public void ajouterUsager(String nomUsager, String prenomUsager) {
+        mm.nouvelUsager(nomUsager, prenomUsager);
     }
-    
-    public Usager rechercherUsager(String nom, String prenom) {
-        return Usager.e_idf(nom, prenom);
+
+    public Usager rechercherUsager(String nomUsager, String prenomUsager) {
+        return mm.getUsager(nomUsager, prenomUsager);
     }
-    
+
     public void ajouterOeuvre(String nom, String auteur) {
-        Oeuvre tmp = new Oeuvre(nom, auteur);
+        mm.nouvelleOeuvre(nom, auteur);
     }
-    
-    public List<Reservation> getAllReservations(){
+
+    public List<Reservation> getAllReservations() {
         return Reservation.getAllReservations();
     }
-    public List<Oeuvre> getAllOeuvres(){
-        return Oeuvre.getAllOeuvres();
+
+    public List<Oeuvre> getAllOeuvres() {
+        return mm.getAllOeuvres();
     }
-    public Set<Usager> getAllUsagers(){
-        return Usager.getAllUsagers();
+
+    public Set<Usager> getAllUsagers() {
+        return mm.getAllUsagers();
     }
-    public void ajouterExemplaire(String nomOeuvre,int id, String editeur, String Type, String etat, Boolean disponible){
+
+    public void ajouterExemplaire(String nomOeuvre, int id, String editeur, String Type, String etat, Boolean disponible) {
         Exemplaire e = new Exemplaire(id, editeur, Type, etat, disponible);
-        Oeuvre o = Oeuvre.e_idf(nomOeuvre);
+        Oeuvre o = mm.getOeuvre(nomOeuvre);
         o.ajouterExemplaire(e);
     }
-    
+
 }

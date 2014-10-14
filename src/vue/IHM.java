@@ -40,6 +40,9 @@ public class IHM {
     public void ajouterExemplaire(String nomOeuvre,int id, String editeur, String Type, String etat, Boolean disponible){
         gestion.ajouterExemplaire(nomOeuvre, id, editeur, Type, etat, disponible);
     }
+    public int emprunterExemplaire(String nomUsager, String prenomUsager, String nomOeuvre, Date dateRetour){
+        return gestion.emprunterExemplaire(nomUsager, prenomUsager, nomOeuvre,dateRetour);
+    }
     
     
     

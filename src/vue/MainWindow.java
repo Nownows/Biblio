@@ -282,8 +282,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         re2 = new RetraitExemplaire();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
+        re2.setVisible(true);
+        re2.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 

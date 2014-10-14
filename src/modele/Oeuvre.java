@@ -1,6 +1,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Oeuvre {
@@ -8,39 +9,29 @@ public class Oeuvre {
     private int id;
     private String nom;
     private String auteur;
-    private static List<Oeuvre> listOeuvre =  new ArrayList<>() ;
     private List<Exemplaire> listExemplaires = new ArrayList<>();
 
-    public Oeuvre(String nom, String auteur) {
-        this.id = listOeuvre.size();
+    public Oeuvre(int id, String nom, String auteur) {
+        this.id = id;
         this.nom = nom;
         this.auteur = auteur;
-        listOeuvre.add(this);
-    }
-    
-    public static Oeuvre e_idf(String nom){
-        for(Oeuvre o : listOeuvre) {
-            if (o.getNom().equals(nom)) {
-                return o;
-            }
-        }
-        return null;
     }
     
     public Exemplaire trouverExemplaire(){
         if (listExemplaires.isEmpty()) {
             return null;
         }
-        return null;
         
+        for(Exemplaire e : listExemplaires){
+            if (e.getDisponible() == true) {
+                return e;
+            }
+        }      
+        return null;      
     }
     
     public void rendrerExemplaire(Exemplaire e, String etat, Boolean dispo){
         
-    }
-    
-    public static List<Oeuvre> getAllOeuvres() {
-        return listOeuvre;
     }
 
     public int getId() {
