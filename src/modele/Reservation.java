@@ -1,5 +1,7 @@
 package modele;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,5 +46,21 @@ public class Reservation {
     public void setDateResa(Date dateResa) {
         this.dateResa = dateResa;
     }
+    
+    public void persisterResa() throws ClassNotFoundException, SQLException{
+                
+        try { 
+            String req="INSERT INTO emprunt (id_oeuvre, id_usager, date_reservation) VALUES ("+this.getOeuvre().getId()+
+                    ","+this.getUsager().getId()+","+this.getDateResa()+");";
+
+
+            Statement statement = DB.getConnexion().createStatement();
+            statement.executeUpdate(req);
+        } 
+        catch (SQLException e){ 
+            System.out.println("Pb d'insertion d'une réservation : " + e.toString()); 
+        } 
+    }
+    
 
 }

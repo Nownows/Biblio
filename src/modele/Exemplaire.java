@@ -1,5 +1,8 @@
 package modele;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Exemplaire {
     
     private int id;
@@ -55,6 +58,21 @@ public class Exemplaire {
 
     public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
+    }
+    
+    public void persisterExemplaire() throws ClassNotFoundException, SQLException{
+                
+        try { 
+            String req="INSERT INTO exemplaire (editeur, type, etat,disponible) VALUES ("+this.getEditeur()+
+                    ","+this.getType()+","+this.getEtat()+"," +this.getDisponible()+");";
+
+
+            Statement statement = DB.getConnexion().createStatement();
+            statement.executeUpdate(req);
+        } 
+        catch (SQLException e){ 
+            System.out.println("Pb d'insertion d'exemplaire : " + e.toString()); 
+        } 
     }
     
     

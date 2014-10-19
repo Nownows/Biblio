@@ -39,16 +39,16 @@ public class Usager {
         this.prenom = prenom;
     }
     
-     public void persisterUsager() throws ClassNotFoundException, SQLException{
+    public void persisterUsager() throws ClassNotFoundException, SQLException{
                 
         try { 
-            String req="INSERT INTO usager (nom, prenom) VALUES ("+this.nom+","+this.prenom+");";
+            String req="INSERT INTO usager (nom, prenom) VALUES ("+this.getNom()+","+this.getPrenom()+");";
 
             Statement statement = DB.getConnexion().createStatement();
             statement.executeUpdate(req);
         } 
         catch (SQLException e){ 
-            System.out.println("Pb d'insertion " + e.toString()); 
+            System.out.println("Pb d'insertion d'un usager :" + e.toString()); 
         } 
     }
 }

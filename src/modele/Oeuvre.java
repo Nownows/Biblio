@@ -1,5 +1,7 @@
 package modele;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,6 +64,17 @@ public class Oeuvre {
         this.listExemplaires.add(e);
     }
     
-    
+        public void persisterUsager() throws ClassNotFoundException, SQLException{
+                
+        try { 
+            String req="INSERT INTO usager (nom, auteur) VALUES ("+this.getNom()+","+this.getAuteur()+");";
+
+            Statement statement = DB.getConnexion().createStatement();
+            statement.executeUpdate(req);
+        } 
+        catch (SQLException e){ 
+            System.out.println("Pb d'insertion d'une oeuvre :" + e.toString()); 
+        } 
+    }
     
 }
