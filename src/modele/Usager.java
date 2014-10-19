@@ -1,5 +1,8 @@
 package modele;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Usager {
 
     private int id;
@@ -36,6 +39,16 @@ public class Usager {
         this.prenom = prenom;
     }
     
-//    test
-//test2
+     public void persisterUsager() throws ClassNotFoundException, SQLException{
+                
+        try { 
+            String req="INSERT INTO usager (nom, prenom) VALUES ("+this.nom+","+this.prenom+");";
+
+            Statement statement = DB.getConnexion().createStatement();
+            statement.executeUpdate(req);
+        } 
+        catch (SQLException e){ 
+            System.out.println("Pb d'insertion " + e.toString()); 
+        } 
+    }
 }
