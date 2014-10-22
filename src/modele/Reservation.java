@@ -2,12 +2,10 @@ package modele;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
-public class Reservation {
+public class Reservation implements DBObject {
 
     private int id;
     private Date dateResa;
@@ -60,6 +58,11 @@ public class Reservation {
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'une réservation : " + e.toString()); 
         } 
+    }
+
+    @Override
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

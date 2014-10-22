@@ -3,10 +3,9 @@ package modele;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class Oeuvre {
+public class Oeuvre implements DBObject {
     
     private int id;
     private String nom;
@@ -75,6 +74,11 @@ public class Oeuvre {
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'une oeuvre :" + e.toString()); 
         } 
+    }
+
+    @Override
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

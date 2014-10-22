@@ -3,7 +3,7 @@ package modele;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Usager {
+public class Usager implements DBObject{
 
     private int id;
     private String nom;
@@ -50,5 +50,10 @@ public class Usager {
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'un usager :" + e.toString()); 
         } 
+    }
+
+    @Override
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

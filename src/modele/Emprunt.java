@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
-public class Emprunt {
+public class Emprunt implements DBObject {
     
 
     private Date date_emprunt;
@@ -68,6 +68,11 @@ public class Emprunt {
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'emprunt : " + e.toString()); 
         } 
+    }
+
+    @Override
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

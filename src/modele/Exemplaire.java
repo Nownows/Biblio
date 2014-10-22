@@ -3,7 +3,7 @@ package modele;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Exemplaire {
+public class Exemplaire implements DBObject {
     
     private int id;
     private String editeur;
@@ -73,6 +73,11 @@ public class Exemplaire {
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'exemplaire : " + e.toString()); 
         } 
+    }
+
+    @Override
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
