@@ -31,8 +31,22 @@ public class Oeuvre implements DBObject {
         return null;      
     }
     
-    public void rendrerExemplaire(Exemplaire e, String etat, Boolean dispo){
-        
+    public void rendreExemplaire(Exemplaire e, String etat){
+        for(Exemplaire ex : listExemplaires){
+            if (ex.getId() == e.getId()) {
+                ex.setDisponible(true);
+                ex.setEtat(etat);
+            }
+        }
+    }
+    
+    public Exemplaire getExemplaire(int id){
+        for(Exemplaire ex : listExemplaires){
+            if (ex.getId() == id) {
+                return ex;
+            }
+        }
+        return null;
     }
 
     public int getId() {

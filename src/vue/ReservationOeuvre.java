@@ -324,7 +324,7 @@ public class ReservationOeuvre extends javax.swing.JFrame {
                 this.setVisible(false);
             }
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Le format de date ne correspond pas. (xx/xx/xxx)", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Le format de date ne correspond pas. (xx/xx/xxxx)", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
 
 

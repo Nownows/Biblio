@@ -40,19 +40,37 @@ public class Gestion {
 
     public int emprunterExemplaire(String nomUsager, String prenomUsager, String nomOeuvre, Date dateRetour) {
         Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
+        if (o == null) {
+            return -1;
+        }
         long now = System.currentTimeMillis();
         Date dateEmprunt = new java.util.Date(now);
         Exemplaire e = o.trouverExemplaire();
         if (e == null) {
-            return -1;
+            return -2;
         }
-
-        emprunts.ajouterEmprunt(new Emprunt(usagers.getUsager(nomUsager, prenomUsager), e, dateEmprunt, dateRetour));
+        Usager u = usagers.getUsager(nomUsager, prenomUsager);
+        if (u == null) {
+            return -3;
+        }
+        emprunts.ajouterEmprunt(new Emprunt(u, e, dateEmprunt, dateRetour));
         return 1;
     }
 
-    public void retournerExemplaire(String nomOeuvre, int idExemplaire, String nomusager) {
+    public int retourExemplaire(String nomUsager, String prenomUsager, String idOeuvre, String nomOeuvre, String etat){
+        Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
+        if (o == null) {
+            return -1;
+        }
+        Usager u = usagers.getUsager(nomUsager, prenomUsager);
+        if (u == null) {
+            return -2;
+        }
+        Exemplaire e = o.getExemplaire(Integer.parseInt(idOeuvre));
+        o.rendreExemplaire(e, etat);
         
+        
+        return 1;
     }
 
     public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
@@ -85,8 +103,8 @@ public class Gestion {
         return usagers.getAllUsagers();
     }
 
-    public void ajouterExemplaire(String nomOeuvre, int id, String editeur, String Type, String etat, Boolean disponible) {
-        Exemplaire e = new Exemplaire(id, editeur, Type, etat, disponible);
+    public void ajouterExemplaire(String nomOeuvre, int id, String editeur, String Type, String etat) {
+        Exemplaire e = new Exemplaire(id, editeur, Type, etat);
         Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
         o.ajouterExemplaire(e);
     }

@@ -10,8 +10,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +28,7 @@ public class RetraitExemplaire extends javax.swing.JFrame {
     IHM ihm;
     public RetraitExemplaire() {
         ihm = new IHM();
-        initComponents();
+        initComponents();          
     }
 
     /**
@@ -49,7 +51,6 @@ public class RetraitExemplaire extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtDateRetour = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +95,7 @@ public class RetraitExemplaire extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNomUsager, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                            .addComponent(txtNomUsager, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                             .addComponent(txtNomOeuvre)
                             .addComponent(txtPrenomUsager)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -130,19 +131,6 @@ public class RetraitExemplaire extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Retrait d'une oeuvre avec réservation"));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 83, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,9 +138,8 @@ public class RetraitExemplaire extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 380, Short.MAX_VALUE)
+                        .addGap(0, 383, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -162,9 +149,7 @@ public class RetraitExemplaire extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -186,9 +171,14 @@ public class RetraitExemplaire extends javax.swing.JFrame {
        else {
            try {
                Date dateRetour = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE).parse(txtDateRetour.getText());
-               if (ihm.emprunterExemplaire(txtNomUsager.getText(), txtPrenomUsager.getText(), txtNomOeuvre.getText(), dateRetour) < 0)
+               int ret;
+               if ( (ret = ihm.emprunterExemplaire(txtNomUsager.getText(), txtPrenomUsager.getText(), txtNomOeuvre.getText(), dateRetour)) < 0)
                {
-                   JOptionPane.showMessageDialog(null, "Il n'y a pas d'exemplaires disponibles", "Erreur", JOptionPane.ERROR_MESSAGE);
+                   switch (ret){
+                       case -1 :JOptionPane.showMessageDialog(null, "Oeuvre inconnue.", "Erreur", JOptionPane.ERROR_MESSAGE);break;
+                       case -2 :JOptionPane.showMessageDialog(null, "Il n'y a pas d'exemplaires disponibles", "Erreur", JOptionPane.ERROR_MESSAGE);break;
+                       case -3 :JOptionPane.showMessageDialog(null, "Usager inconnu.", "Erreur", JOptionPane.ERROR_MESSAGE);break;
+                   }
                }
            } catch (ParseException ex) {
                Logger.getLogger(RetraitExemplaire.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,7 +195,6 @@ public class RetraitExemplaire extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtDateRetour;
     private javax.swing.JTextField txtNomOeuvre;
     private javax.swing.JTextField txtNomUsager;

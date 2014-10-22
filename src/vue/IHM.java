@@ -37,11 +37,15 @@ public class IHM {
     public void supprimerReservation(String nomUsager, String prenomUsager, String nomOeuvre, Date date){
         gestion.supprimerReservation(nomUsager, prenomUsager,nomOeuvre, date);
     }
-    public void ajouterExemplaire(String nomOeuvre,int id, String editeur, String Type, String etat, Boolean disponible){
-        gestion.ajouterExemplaire(nomOeuvre, id, editeur, Type, etat, disponible);
+    public void ajouterExemplaire(String nomOeuvre,int id, String editeur, String Type, String etat){
+        gestion.ajouterExemplaire(nomOeuvre, id, editeur, Type, etat);
     }
     public int emprunterExemplaire(String nomUsager, String prenomUsager, String nomOeuvre, Date dateRetour){
         return gestion.emprunterExemplaire(nomUsager, prenomUsager, nomOeuvre,dateRetour);
+    }
+    
+    public int retourExemplaire(String nomUsager, String prenomUsager, String idOeuvre, String nomOeuvre, String etat){
+        return gestion.retourExemplaire(nomUsager, prenomUsager, idOeuvre, nomOeuvre, etat);
     }
     
     

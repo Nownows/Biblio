@@ -188,7 +188,7 @@ public class AjouterExemplaire extends javax.swing.JFrame {
         }
         else {
         ihm.ajouterExemplaire(cmbOeuvres.getSelectedItem().toString(), Integer.parseInt(txtId.getText()) , 
-                txtEditeur.getText(), txtType.getText(), cmbEtat.getSelectedItem().toString(), true);
+                txtEditeur.getText(), txtType.getText(), cmbEtat.getSelectedItem().toString());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

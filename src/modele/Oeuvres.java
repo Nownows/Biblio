@@ -53,8 +53,8 @@ public class Oeuvres {
         return null;
     }
 
-    public void nouvelExemplaire(int id, String editeur, String type, String etat, Boolean disponible) {
-        Exemplaire e = new Exemplaire(id, editeur, type, etat, disponible);
+    public void nouvelExemplaire(int id, String editeur, String type, String etat) {
+        Exemplaire e = new Exemplaire(id, editeur, type, etat);
         listExemplaires.add(e);
     }
 

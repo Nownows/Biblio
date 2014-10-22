@@ -11,12 +11,12 @@ public class Exemplaire implements DBObject {
     private String etat;
     private Boolean disponible;
 
-    public Exemplaire(int id, String editeur, String Type, String etat, Boolean disponible) {
+    public Exemplaire(int id, String editeur, String Type, String etat) {
         this.id = id;
         this.editeur = editeur;
         this.Type = Type;
         this.etat = etat;
-        this.disponible = disponible;
+        this.disponible = true;
     }
 
 

@@ -6,6 +6,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,5 +32,15 @@ public class Emprunts {
     public void ajouterEmprunt(Emprunt e){
         listEmprunts.add(e);
     }
+    
+    public void supprimerEmprunt(Usager u, Exemplaire e, Date d){
+       for (Emprunt em : listEmprunts) {
+           if (em.getUsager() == u && em.getExemplaire() == e && em.getDate_emprunt() == d) {
+               listEmprunts.remove(e);
+           }
+       }
+    }
+    
+   
 
 }
