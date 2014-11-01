@@ -3,6 +3,8 @@ package modele;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Emprunt implements DBObject {
     
@@ -54,28 +56,25 @@ public class Emprunt implements DBObject {
     public void setDate_retour(Date date_retour) {
         this.date_retour = date_retour;
     }
-    
-    public void persisterEmprunt() throws ClassNotFoundException, SQLException{
-                
+
+    @Override
+    public void save() {
+        
         try { 
             String req="INSERT INTO emprunt (id_usager, id_exemplaire, date_emprunt, date_retour) VALUES ("+this.usager.getId()+
                     ","+this.getExemplaire().getId()+","+this.getDate_emprunt()+"," +this.getDate_retour()+");";
-
 
             Statement statement = DB.getConnexion().createStatement();
             statement.executeUpdate(req);
         } 
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'emprunt : " + e.toString()); 
-        } 
-    }
-
-    @Override
-    public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-    
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Emprunt.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Emprunt.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Emprunt.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }  
 }

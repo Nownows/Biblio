@@ -2,6 +2,8 @@ package modele;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Usager implements DBObject{
 
@@ -38,10 +40,11 @@ public class Usager implements DBObject{
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    
-    public void persisterUsager() throws ClassNotFoundException, SQLException{
-                
-        try { 
+
+    @Override
+    public void save() {
+        
+        try {
             String req="INSERT INTO usager (nom, prenom) VALUES ("+this.getNom()+","+this.getPrenom()+");";
 
             Statement statement = DB.getConnexion().createStatement();
@@ -49,11 +52,12 @@ public class Usager implements DBObject{
         } 
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'un usager :" + e.toString()); 
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }
-
-    @Override
-    public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -31,6 +31,7 @@ public class Emprunts {
     
     public void ajouterEmprunt(Emprunt e){
         listEmprunts.add(e);
+        e.save();
     }
     
     public void supprimerEmprunt(Usager u, Exemplaire e, Date d){

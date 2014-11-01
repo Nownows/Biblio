@@ -5,12 +5,10 @@
  */
 package modele;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  *
@@ -19,19 +17,16 @@ import java.util.logging.Logger;
 public class DB {
     
     static String Driver="com.mysql.jdbc.Driver";
-    static String url = "jdbc:mysql://localhost/Biblio";
+//    static String url = "jdbc:mysql://localhost/Biblio";
+    static String url = "jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull";
     static String login = "userBiblio";
     static String mdp = "Biblio";
 
     static Connection conn = null;
     
-    static void creerConnexion() throws ClassNotFoundException{
+    static void creerConnexion() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
        try{
-           try {
-               Object newInstance = Class.forName(Driver).newInstance();
-           } catch (InstantiationException | IllegalAccessException ex) {
-               Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-           }
+           Object newInstance = Class.forName(Driver).newInstance(); //charge le driver MYSQL
             conn = DriverManager.getConnection(url,login,mdp);
                 
             if(conn == null)
@@ -45,13 +40,9 @@ public class DB {
         }
     }
        
-       public static Connection getConnexion() throws ClassNotFoundException{
+       public static Connection getConnexion() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
            if(conn==null)
                creerConnexion();
            return conn;
        }
-    
-    
-    
 }
-

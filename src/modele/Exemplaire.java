@@ -60,7 +60,7 @@ public class Exemplaire implements DBObject {
         this.disponible = disponible;
     }
     
-    public void persisterExemplaire() throws ClassNotFoundException, SQLException{
+    public void persisterExemplaire() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
                 
         try { 
             String req="INSERT INTO exemplaire (editeur, type, etat,disponible) VALUES ("+this.getEditeur()+

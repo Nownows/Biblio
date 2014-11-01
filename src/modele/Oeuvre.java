@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Oeuvre implements DBObject {
     
@@ -77,8 +79,14 @@ public class Oeuvre implements DBObject {
         this.listExemplaires.add(e);
     }
     
-        public void persisterUsager() throws ClassNotFoundException, SQLException{
-                
+    public void persisterUsager() throws ClassNotFoundException, SQLException{
+
+
+    }
+
+    @Override
+    public void save() {
+        
         try { 
             String req="INSERT INTO usager (nom, auteur) VALUES ("+this.getNom()+","+this.getAuteur()+");";
 
@@ -87,12 +95,12 @@ public class Oeuvre implements DBObject {
         } 
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'une oeuvre :" + e.toString()); 
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Oeuvre.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Oeuvre.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Oeuvre.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }
-
-    @Override
-    public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }  
 }

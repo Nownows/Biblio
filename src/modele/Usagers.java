@@ -54,5 +54,6 @@ public class Usagers {
     public void nouvelUsager(String nom, String prenom) {
         Usager u = new Usager(listUsagers.size(), nom, prenom);
         listUsagers.add(u);
+        u.save();
     }
 }

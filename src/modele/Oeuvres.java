@@ -56,6 +56,7 @@ public class Oeuvres {
     public void nouvelExemplaire(int id, String editeur, String type, String etat) {
         Exemplaire e = new Exemplaire(id, editeur, type, etat);
         listExemplaires.add(e);
+        e.save();
     }
 
     public List<Oeuvre> getAllOeuvres() {
@@ -65,5 +66,6 @@ public class Oeuvres {
     public void nouvelleOeuvre(String nom, String auteur) {
         Oeuvre o = new Oeuvre(listOeuvre.size(), nom, auteur);
         listOeuvre.add(o);
+        o.save();
     }
 }
