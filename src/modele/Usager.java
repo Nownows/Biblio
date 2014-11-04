@@ -15,6 +15,7 @@ public class Usager implements DBObject{
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
+        this.save();
     }
 
     public int getId() {
@@ -45,13 +46,12 @@ public class Usager implements DBObject{
     public void save() {
         
         try {
-            String req="INSERT INTO usager (nom, prenom) VALUES ("+this.getNom()+","+this.getPrenom()+");";
-
+            String req="INSERT INTO usager (`ID_USAGER`, `NOM`, `PRENOM`) VALUES (NULL,"+this.getNom()+","+this.getPrenom()+");";
             Statement statement = DB.getConnexion().createStatement();
             statement.executeUpdate(req);
         } 
         catch (SQLException e){ 
-            System.out.println("Pb d'insertion d'un usager :" + e.toString()); 
+            System.out.println("Pb d'insertion d'un usagerddddd :" + e.toString()); 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

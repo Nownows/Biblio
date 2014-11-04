@@ -2,6 +2,8 @@ package modele;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Exemplaire implements DBObject {
     
@@ -59,25 +61,27 @@ public class Exemplaire implements DBObject {
     public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
     }
-    
-    public void persisterExemplaire() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
-                
+
+
+    @Override
+    public void save() {
         try { 
             String req="INSERT INTO exemplaire (editeur, type, etat,disponible) VALUES ("+this.getEditeur()+
                     ","+this.getType()+","+this.getEtat()+"," +this.getDisponible()+");";
 
 
-            Statement statement = DB.getConnexion().createStatement();
-            statement.executeUpdate(req);
+            Statement statement;
+            try {
+                statement = DB.getConnexion().createStatement();
+                statement.executeUpdate(req);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(Exemplaire.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         } 
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'exemplaire : " + e.toString()); 
-        } 
-    }
-
-    @Override
-    public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
     
     

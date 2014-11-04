@@ -78,11 +78,6 @@ public class Oeuvre implements DBObject {
     public void ajouterExemplaire(Exemplaire e){
         this.listExemplaires.add(e);
     }
-    
-    public void persisterUsager() throws ClassNotFoundException, SQLException{
-
-
-    }
 
     @Override
     public void save() {

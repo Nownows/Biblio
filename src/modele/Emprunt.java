@@ -69,11 +69,7 @@ public class Emprunt implements DBObject {
         } 
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'emprunt : " + e.toString()); 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Emprunt.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Emprunt.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Emprunt.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }  
