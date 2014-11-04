@@ -5,8 +5,15 @@
  */
 package modele;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,7 +27,12 @@ public class Oeuvres {
     private static Oeuvres INSTANCE = null;
 
     private Oeuvres() {
-        listOeuvre = new ArrayList<>();
+        try {
+            listOeuvre = this.loadOeuvres();
+        } catch (Exception e) {
+            listOeuvre = new ArrayList<>();
+        }
+
         listExemplaires = new ArrayList<>();
     }
 
@@ -29,19 +41,6 @@ public class Oeuvres {
             INSTANCE = new Oeuvres();
         }
         return INSTANCE;
-    }
-
-    public Exemplaire trouverExemplaire() {
-        if (listExemplaires.isEmpty()) {
-            return null;
-        }
-
-        for (Exemplaire e : listExemplaires) {
-            if (e.getDisponible() == true) {
-                return e;
-            }
-        }
-        return null;
     }
 
     public Oeuvre getOeuvre(String nom) {
@@ -53,19 +52,36 @@ public class Oeuvres {
         return null;
     }
 
-    public void nouvelExemplaire(int id, String editeur, String type, String etat) {
-        Exemplaire e = new Exemplaire(id, editeur, type, etat);
-        listExemplaires.add(e);
-        e.save();
-    }
-
     public List<Oeuvre> getAllOeuvres() {
         return listOeuvre;
     }
-    
+
     public void nouvelleOeuvre(String nom, String auteur) {
         Oeuvre o = new Oeuvre(listOeuvre.size(), nom, auteur);
         listOeuvre.add(o);
-        o.save();
+
+    }
+
+    private List<Oeuvre> loadOeuvres() {
+        List<Oeuvre> lu = new ArrayList<Oeuvre>();
+        try {
+            String req = "SELECT * FROM oeuvre";
+            Statement statement = DB.getConnexion().createStatement();
+            ResultSet rs = statement.executeQuery(req);
+
+            while (rs.next()) {
+                Oeuvre u = new Oeuvre(Integer.parseInt(rs.getString("ID_OEUVRE")), rs.getString("NOM"), rs.getString("AUTEUR"));
+                lu.add(u);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
     }
 }

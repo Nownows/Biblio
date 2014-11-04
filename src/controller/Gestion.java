@@ -6,6 +6,7 @@ import java.util.Set;
 import modele.Emprunt;
 import modele.Emprunts;
 import modele.Exemplaire;
+import modele.Exemplaires;
 import modele.Oeuvre;
 import modele.Oeuvres;
 import modele.Reservation;
@@ -19,13 +20,16 @@ public class Gestion {
     private final Oeuvres oeuvres;
     private final Reservations reservations;
     private final Usagers usagers;
+    private final Exemplaires exemplaires;
 
     
     public Gestion() {
         emprunts = Emprunts.getInstance();
+        exemplaires = Exemplaires.getInstance();
         oeuvres = Oeuvres.getInstance();
         reservations = Reservations.getInstance();
         usagers = Usagers.getInstance();
+        
     }
 
     public int reserverOeuvre(String nomUsager, String prenomUsager, String nomOeuvre, Date date) {
@@ -45,7 +49,7 @@ public class Gestion {
         }
         long now = System.currentTimeMillis();
         Date dateEmprunt = new java.util.Date(now);
-        Exemplaire e = o.trouverExemplaire();
+        Exemplaire e = exemplaires.trouverExemplaire(o);
         if (e == null) {
             return -2;
         }
@@ -57,7 +61,7 @@ public class Gestion {
         return 1;
     }
 
-    public int retourExemplaire(String nomUsager, String prenomUsager, String idOeuvre, String nomOeuvre, String etat){
+    public int retourExemplaire(String nomUsager, String prenomUsager, String idExemplaire, String nomOeuvre, String etat, Date date){
         Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
         if (o == null) {
             return -1;
@@ -66,8 +70,9 @@ public class Gestion {
         if (u == null) {
             return -2;
         }
-        Exemplaire e = o.getExemplaire(Integer.parseInt(idOeuvre));
-        o.rendreExemplaire(e, etat);
+        Exemplaire e = exemplaires.getExemplaire(Integer.parseInt(idExemplaire));
+        exemplaires.rendreExemplaire(e,etat);
+        emprunts.supprimerEmprunt(u, e, date);
         
         
         return 1;
@@ -104,9 +109,8 @@ public class Gestion {
     }
 
     public void ajouterExemplaire(String nomOeuvre, int id, String editeur, String Type, String etat) {
-        Exemplaire e = new Exemplaire(id, editeur, Type, etat);
-        Oeuvre o = oeuvres.getOeuvre(nomOeuvre);
-        o.ajouterExemplaire(e);
+        Oeuvre o = oeuvres.getOeuvre(nomOeuvre);      
+        Exemplaire e = new Exemplaire(id, editeur, Type, etat, o);      
     }
 
 }

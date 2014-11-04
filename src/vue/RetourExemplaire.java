@@ -6,6 +6,13 @@
 
 package vue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ASUS
@@ -42,13 +49,14 @@ public class RetourExemplaire extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         cmbEtat = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToggleButton1.setText("Retour");
         jToggleButton1.setFocusable(false);
         jToggleButton1.setRequestFocusEnabled(false);
-        jToggleButton1.setRolloverEnabled(false);
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -73,6 +81,8 @@ public class RetourExemplaire extends javax.swing.JFrame {
         cmbEtat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Neuf", "Moyen", "Pourri" }));
 
         jLabel5.setText("État :");
+
+        jLabel6.setText("Date");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,11 +111,15 @@ public class RetourExemplaire extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbEtat, javax.swing.GroupLayout.Alignment.TRAILING, 0, 297, Short.MAX_VALUE)
-                            .addComponent(txtNomOeuvre))))
+                            .addComponent(cmbEtat, javax.swing.GroupLayout.Alignment.TRAILING, 0, 332, Short.MAX_VALUE)
+                            .addComponent(txtNomOeuvre)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -131,7 +145,11 @@ public class RetourExemplaire extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbEtat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(32, 32, 32)
                 .addComponent(jToggleButton1)
@@ -149,7 +167,13 @@ public class RetourExemplaire extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        try {
+            Date date = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE).parse(txtDate.getText());
+            ihm.retourExemplaire(txtNomUsager.getText(), txtPrenomUsager.getText(),txtExemplaire.getText(),txtNomOeuvre.getText(),cmbEtat.getSelectedItem().toString(),date);
+        } catch (ParseException ex) {
+            Logger.getLogger(RetourExemplaire.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -161,7 +185,9 @@ public class RetourExemplaire extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtExemplaire;
     private javax.swing.JTextField txtNomOeuvre;
     private javax.swing.JTextField txtNomUsager;

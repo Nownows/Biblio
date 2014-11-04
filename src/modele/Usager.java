@@ -1,11 +1,14 @@
 package modele;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Usager implements DBObject{
+public class Usager implements DBObject {
 
     private int id;
     private String nom;
@@ -15,7 +18,6 @@ public class Usager implements DBObject{
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.save();
     }
 
     public int getId() {
@@ -44,20 +46,20 @@ public class Usager implements DBObject{
 
     @Override
     public void save() {
-        
+
         try {
-            String req="INSERT INTO usager (`ID_USAGER`, `NOM`, `PRENOM`) VALUES (NULL,"+this.getNom()+","+this.getPrenom()+");";
+            String req = "INSERT INTO usager (`ID_USAGER`, `NOM`, `PRENOM`) VALUES (NULL,'" + this.getNom() + "','" + this.getPrenom() + "');";
+            System.out.println(req);
             Statement statement = DB.getConnexion().createStatement();
             statement.executeUpdate(req);
-        } 
-        catch (SQLException e){ 
-            System.out.println("Pb d'insertion d'un usagerddddd :" + e.toString()); 
+        } catch (SQLException e) {
+            System.out.println("Pb d'insertion d'un usagerddddd :" + e.toString());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
             Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
 }

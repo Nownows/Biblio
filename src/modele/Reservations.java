@@ -33,7 +33,6 @@ public class Reservations {
     public void nouvelleReservation(Usager u, Oeuvre o, Date d) {
         Reservation r = new Reservation(listReservations.size(), u, o, d);
         listReservations.add(r);
-        r.save();
     }
 
     public List<Reservation> getAllReservations() {

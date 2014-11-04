@@ -5,6 +5,8 @@
  */
 package modele;
 
+import java.util.List;
+
 /**
  *
  * @author Main

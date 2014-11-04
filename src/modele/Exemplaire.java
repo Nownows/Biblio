@@ -2,6 +2,7 @@ package modele;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,12 +14,22 @@ public class Exemplaire implements DBObject {
     private String etat;
     private Boolean disponible;
 
-    public Exemplaire(int id, String editeur, String Type, String etat) {
+    public Oeuvre getO() {
+        return o;
+    }
+
+    public void setO(Oeuvre o) {
+        this.o = o;
+    }
+    private Oeuvre o;
+
+    public Exemplaire(int id, String editeur, String Type, String etat, Oeuvre o) {
         this.id = id;
         this.editeur = editeur;
         this.Type = Type;
         this.etat = etat;
         this.disponible = true;
+        this.o = o;
     }
 
 
@@ -82,9 +93,5 @@ public class Exemplaire implements DBObject {
         catch (SQLException e){ 
             System.out.println("Pb d'insertion d'exemplaire : " + e.toString()); 
         }
-    }
-    
-    
-    
-    
+    }  
 }

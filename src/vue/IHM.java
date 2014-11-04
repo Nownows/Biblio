@@ -44,8 +44,8 @@ public class IHM {
         return gestion.emprunterExemplaire(nomUsager, prenomUsager, nomOeuvre,dateRetour);
     }
     
-    public int retourExemplaire(String nomUsager, String prenomUsager, String idOeuvre, String nomOeuvre, String etat){
-        return gestion.retourExemplaire(nomUsager, prenomUsager, idOeuvre, nomOeuvre, etat);
+    public int retourExemplaire(String nomUsager, String prenomUsager, String idOeuvre, String nomOeuvre, String etat, Date date){
+        return gestion.retourExemplaire(nomUsager, prenomUsager, idOeuvre, nomOeuvre, etat, date);
     }
     
     

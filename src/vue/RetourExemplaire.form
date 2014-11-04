@@ -52,11 +52,16 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cmbEtat" alignment="1" pref="297" max="32767" attributes="0"/>
+                          <Component id="cmbEtat" alignment="1" pref="332" max="32767" attributes="0"/>
                           <Component id="txtNomOeuvre" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtDate" min="-2" pref="322" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -92,7 +97,12 @@
                   <Component id="cmbEtat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDate" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
@@ -107,7 +117,6 @@
         <Property name="text" type="java.lang.String" value="Retour"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="requestFocusEnabled" type="boolean" value="false"/>
-        <Property name="rolloverEnabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
@@ -164,6 +173,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc9;tat :"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Date"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDate">
     </Component>
   </SubComponents>
 </Form>
