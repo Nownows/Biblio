@@ -28,7 +28,7 @@ public class Exemplaire implements DBObject {
         this.editeur = editeur;
         this.Type = Type;
         this.etat = etat;
-        this.disponible = true;
+        this.disponible = Boolean.TRUE;
         this.o = o;
     }
 
@@ -77,8 +77,8 @@ public class Exemplaire implements DBObject {
     @Override
     public void save() {
         try { 
-            String req="INSERT INTO exemplaire (editeur, type, etat,disponible) VALUES ("+this.getEditeur()+
-                    ","+this.getType()+","+this.getEtat()+"," +this.getDisponible()+");";
+            String req="INSERT INTO EXEMPLAIRE (id_exemplaire, id_oeuvre, editeur, type, etat, disponible) VALUES ('"+this.getId()+"', '"+this.getO().getId()+"', '"+this.getEditeur()+
+                    "', '"+this.getType()+"', '"+this.getEtat()+"', 1 );";
 
 
             Statement statement;

@@ -59,13 +59,15 @@ public class Oeuvres {
     public void nouvelleOeuvre(String nom, String auteur) {
         Oeuvre o = new Oeuvre(listOeuvre.size(), nom, auteur);
         listOeuvre.add(o);
+        o.save();
 
     }
 
     private List<Oeuvre> loadOeuvres() {
         List<Oeuvre> lu = new ArrayList<Oeuvre>();
         try {
-            String req = "SELECT * FROM oeuvre";
+//            String req = "SELECT * FROM oeuvre";
+            String req = "SELECT * FROM OEUVRE";
             Statement statement = DB.getConnexion().createStatement();
             ResultSet rs = statement.executeQuery(req);
 

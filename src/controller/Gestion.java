@@ -110,7 +110,8 @@ public class Gestion {
 
     public void ajouterExemplaire(String nomOeuvre, int id, String editeur, String Type, String etat) {
         Oeuvre o = oeuvres.getOeuvre(nomOeuvre);      
-        Exemplaire e = new Exemplaire(id, editeur, Type, etat, o);      
+        Exemplaire e = new Exemplaire(id, editeur, Type, etat, o);
+        e.save();
     }
 
 }

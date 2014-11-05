@@ -48,7 +48,7 @@ public class Oeuvre implements DBObject {
     public void save() {
         
         try { 
-            String req="INSERT INTO `biblio`.`oeuvre` (`ID_OEUVRE`, `NOM`, `AUTEUR`) VALUES (NULL, '"+this.getNom()+"', '"+this.getAuteur()+"');";
+            String req="INSERT INTO OEUVRE (NOM, AUTEUR) VALUES ('"+this.getNom()+"', '"+this.getAuteur()+"');";
             Statement statement = DB.getConnexion().createStatement();
             statement.executeUpdate(req);
         } 

@@ -52,8 +52,10 @@ public class Reservation implements DBObject {
     public void save() {
         
         try { 
-            String req="INSERT INTO emprunt (id_oeuvre, id_usager, date_reservation) VALUES ("+this.getOeuvre().getId()+
-                    ","+this.getUsager().getId()+","+this.getDateResa()+");";
+//            String req="INSERT INTO emprunt (id_oeuvre, id_usager, date_reservation) VALUES ("+this.getOeuvre().getId()+
+//                    ","+this.getUsager().getId()+","+this.getDateResa()+");";
+            String req="INSERT INTO emprunt (id_oeuvre, id_usager) VALUES ("+this.getOeuvre().getId()+
+                    ","+this.getUsager().getId()+");";
 
 
             Statement statement = DB.getConnexion().createStatement();

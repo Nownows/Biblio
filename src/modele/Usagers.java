@@ -71,7 +71,7 @@ public class Usagers {
     private Set<Usager> loadDB() {
         Set<Usager> lu = new HashSet<Usager>();
         try {
-            String req = "SELECT * FROM usager";
+            String req = "SELECT * FROM USAGER";
             Statement statement = DB.getConnexion().createStatement();
             ResultSet rs = statement.executeQuery(req);
 

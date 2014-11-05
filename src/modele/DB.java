@@ -17,10 +17,12 @@ import java.util.logging.Logger;
 public class DB {
     
     static String Driver="com.mysql.jdbc.Driver";
-    static String url = "jdbc:mysql://localhost/Biblio";
+    static String url = "jdbc:mysql://localhost:3306/Biblio";
 //    static String url = "jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull";
+//    static String login = "root";
+//    static String mdp = "";
     static String login = "root";
-    static String mdp = "";
+    static String mdp = "Underworld8";
 
     static Connection conn = null;
     

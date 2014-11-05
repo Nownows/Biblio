@@ -48,12 +48,12 @@ public class Usager implements DBObject {
     public void save() {
 
         try {
-            String req = "INSERT INTO usager (`ID_USAGER`, `NOM`, `PRENOM`) VALUES (NULL,'" + this.getNom() + "','" + this.getPrenom() + "');";
+            String req = "INSERT INTO USAGER (NOM, PRENOM) VALUES ('" + this.getNom() + "', '" + this.getPrenom() + "');";
             System.out.println(req);
             Statement statement = DB.getConnexion().createStatement();
             statement.executeUpdate(req);
         } catch (SQLException e) {
-            System.out.println("Pb d'insertion d'un usagerddddd :" + e.toString());
+            System.out.println("Pb d'insertion d'un usager :" + e.toString());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
