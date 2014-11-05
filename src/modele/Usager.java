@@ -62,4 +62,22 @@ public class Usager implements DBObject {
             Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void delete() {
+        try {
+            String req = "DELETE FROM USAGER WHERE id_usager="+this.getId()+";";
+            System.out.println(req);
+            Statement statement=DB.getConnexion().createStatement();
+            statement.executeUpdate(req);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

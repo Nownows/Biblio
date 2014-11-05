@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface DBObject {
     public void save(); 
+    public void delete();
 }

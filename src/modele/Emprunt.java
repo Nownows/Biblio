@@ -74,4 +74,9 @@ public class Emprunt implements DBObject {
             Logger.getLogger(Emprunt.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }  
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
